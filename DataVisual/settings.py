@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     'corsheaders',
     "blog.apps.BlogConfig",
+    "score.apps.ScoreConfig",
 ]
 
 MIDDLEWARE = [
