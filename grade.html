@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>学习优秀之星</title>
+    <script type="text/javascript" src="jsbag/jquery.js" charset="utf-8"></script>
+    <script type="text/javascript" src="jsbag/vue.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/echarts.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/echarts-gl.js" charset="utf-8"></script>
+    <script src="js/api.js" type="module" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/jquery.ba-resize.js"></script>
+    <script type="text/javascript" src="./jsbag/echarts-wordcloud.min.js"></script>
+    <script src="js/grade.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/china.js" charset="utf-8"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/font.css">
+
+    <style>
+        #container{
+            /*height: 1080px;
+            width:1920px;*/
+            width: 100%;
+            height: 100vh;
+            background-color: #000000;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;/**换行*/
+        }
+        /*#container div{
+            background-color: rgba(102,102,102,0.1);
+
+        }*/
+        #title{
+            height: 12%;
+            width: 100%;
+            display: block;
+        }
+        #parent{
+            height: 88%;
+            width: 100%;
+            flex-direction:column;
+            display: flex;
+            /*display: inline-flex;*/
+            flex-wrap: wrap;
+        }
+        #div1{
+            height: 100%;
+            width:60%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        #sub1{
+
+        }
+
+        #div1Content{
+            height: 65%;
+            background-color: rgba(4,144,240,0.1);
+            margin-left: 3%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(6, 146, 164, 0.5),0px -2px 20px rgba(6, 146, 164, 0.3);
+        }
+        #threeD{
+            height: 100%;
+            width: 100%;
+            bottom: 1%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        #threeD_content{
+            width: 70%;
+            height: 100%;
+            margin-right: 1%;
+        }
+        #threeDBar{
+            height: 20%;
+            width: 100%;
+        }
+        #bigWord{
+            height: 28%;
+            margin-left: 3%;
+            margin-top: 1%;
+            border-radius: 10px;
+            box-shadow: 0px 5px 20px rgba(6, 146, 164, 0.5);
+        }
+
+        #div2{
+            float: left;
+            height: 38%;
+            width: 38%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin-left: 0.5%;
+            margin-top: 0.6%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .div2small{
+            width: 49%;
+            height: 100%;
+            background-color: rgba(4,144,240,0.1);
+            border-radius: 10px;
+            box-shadow: 0px 5px 20px rgba(6, 146, 164, 0.5),-1px -5px 20px rgba(6, 146, 164, 0.5);
+        }
+        #div3{
+            float: left;
+            height: 28%;
+            width: 38%;
+            margin-left: 0.5%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            border-radius: 10px;
+            box-shadow: -1px -5px 20px rgba(6, 146, 164, 0.5),1px 5px 20px rgba(6, 146, 164, 0.5);
+            background-color: rgba(4,144,240,0.1);
+        }
+        #div3_1{
+            height: 80%;
+            margin-top: 1%;
+            width: 95%;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        #div4{
+            width: 40%;
+            height: 30%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #div4_1{
+            margin-left: 1%;
+            width: 96%;
+            height: 95%;
+            margin-right: 1.3%;
+            background-color: rgba(4,144,240,0.1);
+            border-radius: 10px;
+            box-shadow: 0px 5px 20px rgba(6, 146, 164, 0.5),-1px -5px 20px rgba(6, 146, 164, 0.5);
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        #div4_2{
+            width: 46%;
+            height: 95%;
+            background-color: rgba(4,144,240,0.1);
+            border-radius: 10px;
+            box-shadow: 0px 5px 20px rgba(6, 146, 164, 0.5),-1px -5px 20px rgba(6, 146, 164, 0.5);
+        }
+        .grade_title{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            font-size: 100%;
+        }
+        .gradeColledge{
+            padding-left: 5%;
+            width: 80%;
+        }
+        .grade_description{
+            font-size: 80%;
+            margin-top: 2%;
+            width: 90%;
+        }
+        .Choices_right{
+            z-index:0;
+            width: 85%;
+            margin-left: 5%;
+            margin-top: 2%;
+        }
+        .star_img{
+            width: 10%;
+            margin-top: 1%;
+        }
+        #threeD_quan{
+            width: 30%;
+            height: 22%;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            /*border-width:0px 0px 0px 2px;
+            border-color: #0b3cff;
+            border-style: solid;*/
+        }
+        #threeD_Guo{
+            margin-top: 2%;
+            height: 23%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            /*border-width:0px 0px 0px 2px;
+            border-color: #0b3cff;
+            border-style: solid;*/
+        }
+        #paiming{
+            height: 50%;
+            width: 30%;
+            margin-left: -2%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        .roll{
+            width: 100%;
+            height: 70%;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            font-weight: normal;
+            font-family: "Microsoft YaHei";
+            color:white;
+        }
+        .runNum{
+            margin: 0 auto;
+            padding: 0;
+            overflow: hidden;
+            height: 50px;
+            line-height: 50px;
+            /* border-top: #CCCCCC solid 1px;
+            border-bottom: #CCCCCC solid 1px; */
+            text-align: center;
+            font-weight: bold;
+            position: relative;
+        }
+        .runNum>li,.pointstyl{
+            list-style: none;
+            width: 40px;
+            float: left;
+            position: absolute;
+        }
+    </style>
+</head>
+<body style="margin: 0;overflow: hidden;">
+
+<div id="container" >
+    <!--粒子特效-->
+    <img src="./img/backgrround_blue.png"style=" width:100%;height:100%;position:absolute;z-index:3;bottom:0;left:0;background-size: contain" >
+    <script type="text/javascript" src="js/three.min.js"></script>
+    <script type="text/javascript" src="js/dat.gui.min.js"></script>
+    <script type="text/javascript" src="js/Stats.min.js"></script>
+    <script src="js/grade_back.js"></script>
+    <script src="jsbag/jquery.js"></script>
+
+    <!--js 3D特效-->
+    <div id="WebGL-output" style="width: 100%;z-index:1;height: 100%;position: absolute;opacity:0.5"></div>
+    <div id="title" style="z-index: 4;font-family: textFont" >
+        <div style="width: 100%;height: 100%">
+            <div style=";font-size:30px;text-align: center;color: white;size: 20px;margin:0 auto;position: relative;top:9%;line-height: 32px">
+                <div style="height: 60%">学习优秀之星</div>
+                <img src="img/blue_title1.gif" style="height: 40%;width: 30%">
+            </div>
+        </div>
+    </div>
+    <div id="parent" style="z-index: 4" >
+        <!--三维柱状图-->
+        <div id="div1">
+            <div id="div1Content">
+                <div style="width: 100%;height:5%;display: flex;flex-direction: row;z-index: 5;margin-top: 1%">
+                    <div style="background-color: #0b3cff;width: 1%;height: 108%;margin-top: 1.5%;margin-right: 2%;margin-left: 1%;"></div>
+                    <div id="sub1" class="subTitle" style="width: 99%;height: 100%;color:#fff;font-size: 22px;margin-top: 6px;">概览</div>
+                </div>
+                <div id="threeD">
+                    <div id="threeD_content"> <!--地图-->
+                    <script type="text/javascript" charset="utf-8">
+                        $(function(){
+                            let option=getThreeD('threeD_content');
+                        })
+                    </script>
+                    </div>
+                    <div id="threeD_quan"><!--全校学生-->
+                        <div style="width: 2%;height: 26%;background-color: #0b3cff; "></div>
+                        <div style="width: 95%;height: 35%;color:#00adff;padding-left: 2%;font-family: textFont;font-size: 15px">全校优绩学子共</div>
+                        <div class="roll">
+                            <div style="width: auto;font-size:44px;position:relative;">
+                                <ul class="runNum" id="quan"></ul>
+                                <li class="pointstyl">.</li>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="threeD_Guo"><!--90 且 国奖-->
+                        <div style="width: 2%;height: 26%;background-color: #0b3cff; "></div>
+                        <div style="width: 95%;height: 35%;color: #00adff;padding-left: 2%;font-family: textFont;font-size: 15px">国奖加持的优绩共</div>
+                        <div class="roll">
+                            <div style="width: auto;font-size:44px;position:relative;">
+                                <ul class="runNum" id="guo"></ul>
+                                <li class="pointstyl">.</li>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="paiming">
+                        <div style="width: 2%;height: 11%;background-color: #0b3cff;margin-left: 7%; "></div>
+                        <div style="width: 90%;height: 11%;color: #00adff;padding-left: 2%;font-family: textFont;font-size: 15px;">省份排名</div>
+                        <div id="paming_content" style="width: 100%;height: 80%;-webkit-tap-highlight-color: transparent;user-select: none;margin-top: -2%;margin-left: -1%;">
+                            <script>
+                                $(function () {
+                                    gradePaiming('paming_content');
+                                })
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <!--轮播优秀学生TOP5信息-->
+            <div id="bigWord" style="background-color: rgba(4,144,240,0.1);">
+                <div style="flex-direction: row;display: flex;width: 100%;height: 16%">
+                    <div style="background-color: #0b3cff;width: 1%;height: 83%;margin-left: 2%;margin-top: 2%;margin-right: 2%;"></div>
+                    <div class="subTitle" style="color: white;font-size: 18px;width: 100%;height: 100%;margin-top: 1%;">加权优绩学子<span style="color: rgba(109,85,253,1);font-size: 25px">  TOP 5</span></div>
+                </div>
+                <!-- 轮播图片 成绩前5名-->
+                <div style="color: white;margin-left: 7%;margin-top: 4%;bottom: 0;">
+                    <div class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner" style="z-index:0;width: 100%">
+                            <div class="carousel-item active">
+                                <div style="flex-wrap: wrap;display: flex;flex-direction: row;">
+                                    <div class="star_img" >
+                                        <div style="border: solid 1px #666;padding: 2px">
+                                            <img src="img/grade_star/grade0.jpg" width="100%" height="100%" style="z-index: 2;">
+                                        </div>
+                                    </div>
+                                    <div class="Choices_right">
+                                        <div class="grade_title" >
+                                            <div class="gradeName">白敬亭</div>
+                                            <div class="gradeColledge">信息与安全工程学院</div>
+                                        </div>
+                                        <p class="grade_description">   爱鞋如狂-采用直播互动课堂加录播的方式，课程界面显示PPT和板书，
+                                            错过直播可以看回放，随时随地上课，不必担心错过重要知识点。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div style="flex-wrap: wrap;display: flex;flex-direction: row;">
+                                    <div class="star_img">
+                                        <div style="border: solid 1px #666;padding: 2px">
+                                            <img src="img/grade_star/grade1.jpg" width="100%">
+                                        </div>
+                                    </div>
+                                    <div class="Choices_right">
+                                        <div class="grade_title">
+                                            <div class="gradeName">哇哈哈</div>
+                                            <div class="gradeColledge">统数学院</div>
+                                        </div>
+                                        <p class="grade_description">   dssdf-采用直播互动课堂加录播的方式，课程界面显示PPT和板书，
+                                            错过直播可以看回放，随时随地上课，不必担心错过重要知识点。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div style="flex-wrap: wrap;display: flex;flex-direction: row;">
+                                    <div class="star_img">
+                                        <div style="border: solid 1px #666;padding: 2px">
+                                            <img src="img/grade_star/grade2.jpg" width="100%">
+                                        </div>
+                                    </div>
+                                    <div class="Choices_right">
+                                        <div class="grade_title">
+                                            <div class="gradeName">旺仔</div>
+                                            <div class="gradeColledge">法学院</div>
+                                        </div>
+                                        <p class="grade_description">   dssferk-采用直播互动课堂加录播的方式，课程界面显示PPT和板书，
+                                            错过直播可以看回放，随时随地上课，不必担心错过重要知识点。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <div style="flex-wrap: wrap;display: flex;flex-direction: row;">
+                                    <div class="star_img">
+                                        <div style="border: solid 1px #666;padding: 2px">
+                                            <img src="img/grade_star/grade3.jpg" width="100%">
+                                        </div>
+                                    </div>
+                                    <div class="Choices_right">
+                                        <div class="grade_title">
+                                            <div class="gradeName">你是谁</div>
+                                            <div class="gradeColledge">会计学院</div>
+                                        </div>
+                                        <p class="grade_description">   不认识-采用直播互动课堂加录播的方式，课程界面显示PPT和板书，
+                                            错过直播可以看回放，随时随地上课，不必担心错过重要知识点。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                        let data='[{"name": "白敬亭1", "des": "95"}, ' +
+                            '{"name": "lily2", "des": "采用直播互动课堂加录播的方式，课程界面显示PPT和板书,' +
+                            '                                        错过直播可以看回放，随时随地上课，不必担心错过重要知识点。"},' +
+                            '{"name": "lastststst3","des":"95.4"},{"name": "sds4", "des": "96"}, ' +
+                            '{"name": "mike5", "des": "96.3"},' +
+                            '{"name": "loli6","des":"96.2"},' +
+                            '{"name": "luna7","des":"96.2"},' +
+                            '{"name": "fan8","des":"96.2"},' +
+                            '{"name": "pei9","des":"96.2"}]';
+                        /*照片定时任务
+                         $(function () {
+                             photoInter();
+                         })
+
+                         let photoInter=function(){
+                             data=JSON.parse(data)
+                             let i=0;
+                             setInterval(()=>{
+                                 let name=document.getElementById("grade_name");
+                                 let desc=document.getElementById("grade_description");
+                                 let imgdiv=document.getElementsByClassName("Choices_left").item(0);
+                                 name.innerText=data[i]["name"]
+                                 desc.innerText='我是'+data[i]["des"]+';我是第'+(i+1)+'个';
+                                 let str='<img src="img/grade_star/grade'+i+'.jpg" width="100%">'
+                                 imgdiv.innerHTML=str;
+                                 i++;
+                                 i=i%data.length;
+                             },2000)}*/
+
+                    </script>
+            </div>
+        </div>
+
+        <div id="div2" onclick="mainShow()">
+            <!--title-->
+            <div class="div2small" style="margin-right: 1.3%">
+                <div style="height: 8%;width: 100%;margin-top: 5%;display: flex;flex-direction: row;">
+                    <div style="background-color: #0b3cff;width: 3%;height: 100%;margin-left: 2%;margin-right: 2%;"></div>
+                    <div style="text-align: center;font-size: 16px;color: white;font-family: textFont;">
+                        成绩组成
+                    </div>
+                </div>
+
+                <div id="div2_1" style="width: 80%;height: 80%;margin-left: 10%;">
+                    <script type="text/javascript" charset="utf-8">
+                        $(function(){
+                            duibiBar('div2_1');
+                            //bintu('div2_1');
+                        });
+                    </script>
+                </div>
+
+            </div>
+            <!--conten-->
+            <div class="div2small">
+                <div style="height: 8%;width: 100%;margin-top: 5%;display: flex;flex-direction: row;">
+                    <div style="background-color: #0b3cff;width: 3%;height: 100%;margin-left: 2%;margin-right: 2%;"></div>
+                    <div  style="text-align: center;font-size: 16px;color: white;font-family: textFont;">
+                        自习地点
+                    </div>
+                </div>
+
+                <div id="div2_2" style="width: 80%;height: 80%;margin-left: 10%;margin-top: -7%;">
+                    <script type="text/javascript" charset="utf-8">
+                        $(function(){
+                            shandian('div2_2');
+                            //leida('div2_2');
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+            <!--可以展示 记笔记方式 假期安排 位置地方-->
+            <!--        <div id="div3" style="display: none">-->
+            <!--            <script type="text/javascript" charset="utf-8">-->
+            <!--                $(function(){-->
+            <!--                    bintu();-->
+            <!--                    console.log("333");-->
+            <!--                });-->
+            <!--            </script>-->
+            <!--        </div>-->
+        <div id="div3" >
+            <div style="height: 13%;width: 42%;margin-top: 1.3%;display: flex;flex-direction: row;">
+                <div style="background-color: #0b3cff;width: 3%;height: 100%;margin-left: 3%;margin-right: 3%;margin-top: 4%;"></div>
+                <div style="text-align: center;font-size: 16px;color: white;margin-top: 3%;font-family: textFont;">
+                    学霸的一天
+                </div>
+            </div>
+            <div id="div3_1" style="height: 75%;width: 100%">
+                <script type="text/javascript" charset="utf-8">
+                    $(function(){
+                        manyBin('div3_1');
+                    });
+                </script>
+            </div>
+        </div>
+
+        <div id="div4">
+            <div id="div4_1">
+                <div style="height: 13%;width: 42%;margin-top: 1.3%;display: flex;flex-direction: row;">
+                    <div style="background-color: #0b3cff;width: 3%;height: 100%;margin-left: 4%;margin-right: 3%; margin-top: 2%;"></div>
+                    <div style="text-align: center;font-size: 16px;color: white;font-family: textFont;margin-top: 1%;">
+                        学霸的父母
+                    </div>
+                </div>
+                <div id="div4_1_content" style="height:120%;width: 100%;margin-top: -5%;">
+                <script type="text/javascript" charset="utf-8">
+                    $(function(){
+                        fumu('div4_1_content')
+                        //nianji('div4_1');
+                    });
+                </script>
+                </div>
+            </div>
+            <!--<div id="div4_2">
+                <script type="text/javascript" charset="utf-8">
+                    $(function(){
+
+                    });
+                </script>
+            </div>-->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    function getThreeD(name) {
+        let data={"\u516c\u5171\u7ba1\u7406\u7c7b": {"\u5e8f\u53f7": [193.0, 12371.0, 55.858452061139914, 12275.0, 12323.0, 12371.0, 12419.0, 12467.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [193.0, 83.20968911917097, 4.9602283745660065, 58.02, 80.84, 83.82, 86.98, 91.56], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [193.0, 84.72160621761658, 4.189168822983999, 64.14, 82.57, 85.46, 87.68, 92.33], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [193.0, 1.0373056994818652, 1.4227709154801051, 0.0, 0.0, 0.5, 1.65, 9.15], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [193.0, 69.65803108808291, 45.24087327686321, 0.0, 0.0, 97.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [193.0, 22.424870466321245, 0.9161758774067176, 21.0, 22.0, 22.0, 23.0, 25.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [193.0, 22.025906735751295, 1.2601059527237422, 15.0, 21.0, 22.0, 23.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [193.0, 56.52497409326425, 8.616813695011263, 31.91, 46.5, 60.74, 63.22, 67.21]}, "\u65e5\u8bed": {"\u5e8f\u53f7": [125.0, 7391.1759999999995, 170.2043868128039, 7151.0, 7182.0, 7422.0, 7584.0, 7615.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [125.0, 86.25552000000002, 4.398429422037503, 72.75, 83.41, 87.13, 89.0, 97.46], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [125.0, 87.23288000000001, 3.774529412240811, 77.45, 85.17, 87.67, 89.75, 97.28], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [125.0, 1.3164799999999999, 2.2243387041922684, 0.0, 0.0, 0.2, 2.15, 15.55], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [125.0, 53.583999999999996, 50.05628831625454, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [125.0, 21.6, 2.7179214069199182, 15.0, 20.0, 22.0, 24.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [125.0, 21.44, 2.6982670663391204, 15.0, 19.0, 22.0, 23.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [125.0, 55.8732, 9.286314123483008, 40.01, 46.04, 61.92, 64.21, 70.05]}, "\u56fd\u9645\u653f\u6cbb": {"\u5e8f\u53f7": [102.0, 127.13725490196079, 78.68750567164696, 19.0, 44.25, 121.5, 217.75, 243.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [102.0, 86.43764705882354, 3.46073281785454, 77.41, 84.22749999999998, 87.03999999999998, 89.02250000000002, 93.0], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [102.0, 86.61127450980392, 3.4949280567585475, 77.27, 84.63, 87.58, 89.1975, 93.19], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [102.0, 1.6150000000000002, 2.0725818547296164, 0.0, 0.0, 0.725, 2.6875000000000004, 9.08], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [102.0, 68.93137254901961, 44.74377213235503, 0.0, 0.0, 96.0, 99.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [102.0, 21.715686274509807, 3.3132719940479416, 15.0, 18.0, 23.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [102.0, 21.57843137254902, 3.3313282651361638, 14.0, 18.0, 23.0, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [102.0, 58.36509803921568, 8.357887570657942, 42.58, 47.865, 62.775, 64.23499999999999, 67.48]}, "\u6cd5\u5b66": {"\u5e8f\u53f7": [2510.0, 5037.5, 724.7189110268891, 3783.0, 4410.25, 5037.5, 5664.75, 6292.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [2510.0, 85.15829880478087, 5.8163151886579225, 0.0, 83.04, 86.3, 88.62, 95.95], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [2510.0, 86.20441035856572, 5.332615582498867, 0.0, 84.505, 87.18, 89.22, 96.12], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [2510.0, 1.5266135458167331, 2.4085802197199917, 0.0, 0.0, 0.6, 2.12, 20.9], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [2510.0, 61.9, 48.32607253407165, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [2510.0, 20.005179282868525, 2.8772504609357954, 1.0, 19.0, 19.0, 23.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [2510.0, 19.799203187250995, 2.957032433980661, 0.0, 18.0, 19.0, 22.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [2510.0, 56.580143426294825, 9.602058516766744, 0.0, 46.67, 62.085, 64.24, 72.96]}, "\u516c\u5171\u4e8b\u4e1a\u7ba1\u7406": {"\u5e8f\u53f7": [78.0, 11984.730769230771, 103.54830393952018, 11841.0, 11860.25, 12050.5, 12069.75, 12089.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [78.0, 82.80294871794874, 8.681392417638099, 35.45, 79.75, 84.13499999999998, 88.285, 94.64], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [78.0, 83.9147435897436, 8.785314594868106, 27.38, 81.775, 85.50999999999998, 88.4375, 94.81], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [78.0, 1.7292307692307691, 2.1223062493862224, 0.0, 0.0, 1.35, 2.6625000000000005, 9.27], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [78.0, 66.51282051282051, 47.34996635710856, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [78.0, 22.423076923076927, 3.172606903704676, 13.0, 21.0, 24.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [78.0, 21.46153846153846, 3.757908743154645, 5.0, 20.0, 23.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [78.0, 56.03782051282051, 10.946372541235833, 19.5, 45.2, 61.52, 63.81, 68.84]}, "\u7535\u5b50\u5546\u52a1(\u7ba1\u7406\u65b9\u5411)": {"\u5e8f\u53f7": [97.0, 9331.05154639175, 292.72393034841787, 9045.0, 9069.0, 9093.0, 9654.0, 9678.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [97.0, 86.46443298969075, 6.654294974092572, 52.23, 84.58, 87.7, 90.35, 94.18], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [97.0, 87.1340206185567, 6.370461237192362, 50.69, 85.46, 88.56, 91.13, 94.64], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [97.0, 1.8181443298969069, 2.1640131170162893, 0.0, 0.0, 1.25, 2.58, 10.25], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [97.0, 66.20618556701032, 42.489934627786134, 0.0, 0.0, 90.0, 96.0, 99.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [97.0, 19.371134020618555, 5.352802201551512, 7.0, 14.0, 21.0, 24.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [97.0, 18.948453608247426, 5.337311928811127, 5.0, 14.0, 19.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [97.0, 58.03226804123712, 9.460257605851552, 28.73, 48.15, 62.69, 64.67, 67.56]}, "\u7ba1\u7406\u79d1\u5b66\u4e0e\u5de5\u7a0b\u7c7b": {"\u5e8f\u53f7": [120.0, 3722.5, 34.785054261852174, 3663.0, 3692.75, 3722.5, 3752.25, 3782.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [120.0, 82.99908333333333, 4.836222742302639, 69.8, 79.72749999999998, 84.16, 86.6825, 91.35], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [120.0, 84.42358333333333, 3.9040708759910983, 70.64, 81.80250000000002, 85.16, 87.415, 91.0], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [120.0, 0.9123333333333332, 1.3636516308456952, 0.0, 0.0, 0.45, 1.28, 8.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [120.0, 66.3, 45.3771496932731, 0.0, 0.0, 95.5, 98.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [120.0, 22.66666666666667, 0.6900655593423543, 19.0, 22.0, 23.0, 23.0, 24.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [120.0, 22.25833333333333, 1.1338625391567891, 18.0, 22.0, 23.0, 23.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [120.0, 55.8685, 9.049279896138446, 38.39, 44.6225, 60.69, 62.5025, 66.76]}, "\u6cd5\u5b66(\u5211\u4e8b\u53f8\u6cd5\u65b9\u5411)": {"\u5e8f\u53f7": [177.0, 6667.983050847459, 152.35068974454774, 6465.0, 6509.0, 6765.0, 6809.0, 6853.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [177.0, 80.35644067796609, 9.47437094866363, 14.13, 76.17, 82.1, 86.15, 92.91], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [177.0, 81.63666666666667, 8.969832816590047, 12.17, 77.57, 83.5, 86.62, 93.53], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [177.0, 1.3303954802259883, 2.1252578350482563, 0.0, 0.0, 0.45, 1.88, 12.25], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [177.0, 65.87570621468926, 47.31958953949121, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [177.0, 22.440677966101696, 2.5624330574893115, 12.0, 21.0, 23.0, 24.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [177.0, 21.836158192090398, 3.1372474432673663, 1.0, 20.0, 23.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [177.0, 54.47649717514124, 10.835801829900127, 7.77, 45.13, 59.6, 63.0, 68.25]}, "\u5de5\u7a0b\u9020\u4ef7": {"\u5e8f\u53f7": [83.0, 2885.8313253012047, 266.7894858094413, 2631.0, 2651.5, 2672.0, 3185.5, 3206.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [83.0, 83.89686746987951, 7.944579979029551, 52.53, 81.555, 85.42, 89.02000000000002, 94.35], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [83.0, 85.2333734939759, 7.31184709857553, 55.5, 83.16499999999998, 86.72, 89.685, 94.62], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [83.0, 1.9255421686746987, 2.807226412190096, 0.0, 0.0, 0.75, 3.075, 13.78], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [83.0, 55.6987951807229, 49.06907399697851, 0.0, 0.0, 95.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [83.0, 19.91566265060241, 5.049039559180872, 12.0, 15.0, 19.0, 25.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [83.0, 19.373493975903614, 4.905722997791542, 12.0, 15.0, 18.0, 25.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [83.0, 55.076265060240964, 11.029727979181533, 28.89, 45.15, 61.0, 64.22999999999999, 70.77]}, "\u4fe1\u606f\u4e0e\u8ba1\u7b97\u79d1\u5b66(\u7cbe\u7b97\u5b66\u4e2d\u6fb3\u73ed)": {"\u5e8f\u53f7": [5.0, 12571.0, 1.5811388300841898, 12569.0, 12570.0, 12571.0, 12572.0, 12573.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [5.0, 87.91, 5.067933503904718, 79.93, 87.05, 88.53, 90.58, 93.46], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [5.0, 88.80999999999997, 4.634706031670185, 82.4, 87.25, 89.2, 90.0, 95.2], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [5.0, 1.15, 2.5714781741247577, 0.0, 0.0, 0.0, 0.0, 5.75], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [5.0, 40.0, 54.77225575051661, 0.0, 0.0, 0.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [5.0, 7.0, 2.1213203435596424, 5.0, 5.0, 7.0, 8.0, 10.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [5.0, 7.0, 2.1213203435596424, 5.0, 5.0, 7.0, 8.0, 10.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [5.0, 54.69599999999999, 10.569523641110793, 43.96, 47.88, 49.82, 63.69, 68.13]}, "\u7269\u6d41\u7ba1\u7406": {"\u5e8f\u53f7": [93.0, 9402.41935483871, 290.9804013488614, 9099.0, 9122.0, 9145.0, 9700.0, 9723.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [93.0, 82.06236559139786, 7.548865074192836, 46.02, 79.48, 83.81, 87.0, 92.06], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [93.0, 83.1958064516129, 6.771552921016849, 49.87, 80.68, 84.96, 87.68, 92.29], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [93.0, 1.4686021505376343, 2.1918294876743496, 0.0, 0.0, 0.45, 2.05, 12.3], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [93.0, 56.064516129032256, 48.98398284169085, 0.0, 0.0, 97.0, 99.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [93.0, 20.78494623655914, 3.878170406725291, 14.0, 17.0, 22.0, 24.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [93.0, 20.032258064516128, 4.020197953441191, 7.0, 16.0, 21.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [93.0, 53.98462365591397, 10.640230113474763, 25.31, 44.18, 59.58, 63.22, 68.8]}, "\u4f1a\u8ba1\u5b66(\u57fa\u5730\u73ed)": {"\u5e8f\u53f7": [87.0, 11280.563218390804, 377.1304043526535, 10806.0, 10827.5, 11276.0, 11723.5, 11745.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [87.0, 86.49689655172413, 5.396729912177186, 66.24, 83.96000000000002, 87.01, 90.88, 93.9], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [87.0, 87.74563218390806, 4.580516803671786, 67.09, 85.68, 87.73, 90.905, 94.31], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [87.0, 2.927471264367816, 2.4230171554887043, 0.0, 1.025, 2.48, 4.35, 11.75], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [87.0, 93.90804597701151, 23.45387962349109, 0.0, 100.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [87.0, 20.206896551724142, 3.615656944503559, 13.0, 16.5, 22.0, 23.0, 25.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [87.0, 20.02298850574713, 3.7322510555597423, 12.0, 16.0, 22.0, 22.5, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [87.0, 62.53804597701149, 4.9806469270381974, 42.64, 61.79, 63.16, 65.46000000000001, 69.05]}, "\u4fe1\u606f\u7ba1\u7406\u4e0e\u4fe1\u606f\u7cfb\u7edf(\u91d1\u878d\u4fe1\u606f\u5de5\u7a0b\u65b9\u5411)": {"\u5e8f\u53f7": [86.0, 13729.0, 130.35562218521346, 13579.0, 13600.25, 13729.0, 13857.75, 13879.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [86.0, 84.3736046511628, 9.360791308027792, 27.72, 83.2775, 87.005, 89.35000000000002, 94.9], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [86.0, 85.57802325581395, 8.516758955455717, 33.79, 84.56, 87.805, 90.1175, 94.56], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [86.0, 2.7133720930232554, 3.5210668872692263, 0.0, 0.0, 1.75, 4.1625, 15.55], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [86.0, 61.62790697674418, 48.91434205932986, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [86.0, 18.976744186046513, 5.594065645971306, 11.0, 13.0, 16.5, 25.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [86.0, 18.406976744186046, 5.740215013346871, 6.0, 13.0, 16.0, 25.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [86.0, 56.46383720930233, 11.576122704399133, 15.25, 46.5175, 62.85, 65.4175, 71.86]}, "\u54f2\u5b66": {"\u5e8f\u53f7": [83.0, 115.79518072289156, 73.17215901242844, 1.0, 77.5, 98.0, 189.5, 210.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [83.0, 86.4056626506024, 3.8167008460478216, 75.48, 84.185, 86.89, 89.14500000000002, 94.63], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [83.0, 86.56506024096386, 3.541830990408698, 76.94, 84.54499999999999, 87.08, 89.09, 94.33], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [83.0, 0.9009638554216868, 1.409452076948423, 0.0, 0.0, 0.0, 1.285, 5.55], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [83.0, 56.86746987951807, 47.69766857429053, 0.0, 0.0, 94.0, 96.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [83.0, 21.44578313253012, 2.280634336491756, 15.0, 20.0, 21.0, 24.0, 25.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [83.0, 21.313253012048193, 2.300199942758813, 15.0, 20.0, 21.0, 24.0, 25.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [83.0, 56.32349397590364, 8.804142654861879, 41.51, 46.87000000000001, 61.64, 63.42, 68.7]}, "\u56fd\u9645\u7ecf\u6d4e\u4e0e\u8d38\u6613": {"\u5e8f\u53f7": [221.0, 8852.076923076924, 346.47860810463584, 8457.0, 8512.0, 8567.0, 9200.0, 9255.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [221.0, 81.99316742081449, 12.959318932512238, 0.0, 79.73, 85.05, 88.33, 93.89], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [221.0, 83.14619909502261, 12.7275001486116, 0.0, 81.67, 86.06, 88.8, 94.15], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [221.0, 2.1090497737556557, 3.1485974514293944, 0.0, 0.0, 1.2, 2.7, 19.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [221.0, 68.29864253393666, 45.21636316809336, 0.0, 0.0, 97.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [221.0, 21.443438914027148, 3.8272604648194153, 11.0, 18.0, 22.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [221.0, 20.552036199095024, 4.814113523470909, 0.0, 17.0, 20.0, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [221.0, 55.9737556561086, 12.425931350278852, 0.0, 46.38, 61.67, 64.3, 70.0]}, "\u7ecf\u6d4e\u5b66\u62d4\u5c16\u4eba\u624d\u5b9e\u9a8c\u73ed": {"\u5e8f\u53f7": [46.0, 1220.5, 13.42261772780059, 1198.0, 1209.25, 1220.5, 1231.75, 1243.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [46.0, 85.4154347826087, 3.4878001385921302, 74.65, 83.58500000000002, 85.445, 87.86749999999998, 91.55], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [46.0, 86.6508695652174, 2.560944119384234, 78.73, 85.3, 86.7, 88.42500000000003, 90.95], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [46.0, 0.9958695652173912, 1.1913271331436428, 0.0, 0.11250000000000003, 0.675, 1.485, 5.18], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [46.0, 77.6304347826087, 38.761010590914495, 0.0, 94.0, 96.0, 96.75, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [46.0, 21.347826086956523, 0.7368820591398094, 20.0, 21.0, 21.5, 22.0, 22.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [46.0, 21.30434782608696, 0.7562940409182809, 20.0, 21.0, 21.0, 22.0, 22.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [46.0, 58.92130434782608, 7.188171335587269, 41.06, 60.06, 61.79, 63.0925, 65.65]}, "\u4fdd\u9669\u5b66": {"\u5e8f\u53f7": [81.0, 2609.1481481481487, 297.2185690325855, 2317.0, 2337.0, 2357.0, 2929.0, 2949.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [81.0, 81.23814814814814, 9.724778032314044, 46.1, 76.7, 82.95, 88.37, 95.31], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [81.0, 82.59938271604938, 9.205214330160787, 44.69, 78.75, 84.32, 89.06, 95.65], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [81.0, 1.4333333333333331, 2.4506891887793523, 0.0, 0.0, 0.0, 1.95, 14.3], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [81.0, 50.617283950617285, 50.307695211874545, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [81.0, 21.419753086419753, 4.401318545421543, 6.0, 18.0, 22.0, 25.0, 31.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [81.0, 20.19753086419753, 4.237982282544428, 5.0, 17.0, 19.0, 24.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [81.0, 52.703580246913575, 12.251210481891368, 25.36, 42.18, 59.09, 64.04, 68.26]}, "\u91d1\u878d\u5b66\u7c7b": {"\u5e8f\u53f7": [326.0, 3499.5, 94.25232092633051, 3337.0, 3418.25, 3499.5, 3580.75, 3662.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [326.0, 85.60647239263804, 5.326625152730107, 41.0, 83.2025, 86.14500000000002, 89.135, 93.72], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [326.0, 86.51003067484663, 4.523657369767981, 43.5, 84.7175, 87.11500000000002, 89.55, 93.04], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [326.0, 0.9853987730061351, 1.233494470892175, 0.0, 0.0, 0.665, 1.4725, 9.58], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [326.0, 79.47546012269939, 39.758629587936156, 0.0, 96.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [326.0, 22.23006134969325, 0.9949803226086836, 15.0, 22.0, 22.0, 23.0, 24.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [326.0, 21.98466257668712, 1.3999157259068633, 8.0, 22.0, 22.0, 23.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [326.0, 59.300613496932506, 7.696024963437168, 36.61, 58.6425, 62.425, 64.37, 68.94]}, "\u7535\u5f71\u5b66(\u5f71\u50cf\u5185\u5bb9\u65b9\u5411)": {"\u5e8f\u53f7": [443.0, 14725.534988713318, 236.06327382321322, 14367.0, 14477.5, 14724.0, 14970.5, 15081.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [443.0, 85.86720090293453, 6.087246241771643, 25.36, 84.555, 86.89, 88.62, 93.07], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [443.0, 85.92934537246047, 6.226282438936358, 24.79, 84.875, 87.11, 88.79, 93.17], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [443.0, 0.9581264108352144, 2.3067116047358547, 0.0, 0.0, 0.0, 0.85, 21.17], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [443.0, 54.38600451467269, 49.50714088142612, 0.0, 0.0, 98.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [443.0, 22.167042889390522, 4.645739260000716, 7.0, 18.0, 20.0, 28.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [443.0, 21.89390519187359, 4.847916365410372, 3.0, 18.0, 20.0, 28.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [443.0, 55.672460496613986, 9.518520648450282, 13.95, 46.965, 61.65, 63.865, 68.99]}, "\u4fdd\u9669\u5b66(\u4fdd\u9669\u7cbe\u7b97\u65b9\u5411)": {"\u5e8f\u53f7": [77.0, 2957.818181818182, 266.1955023184003, 2678.0, 2697.0, 2716.0, 3225.0, 3244.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [77.0, 84.36662337662337, 6.576321682327161, 66.94, 80.22, 85.53, 89.05, 96.28], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [77.0, 85.31935064935065, 5.9423660310081745, 67.8, 81.44, 86.63, 89.54, 96.41], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [77.0, 2.6212987012987017, 3.6186197392788166, 0.0, 0.0, 1.5, 4.42, 18.22], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [77.0, 57.94805194805195, 49.18945546608438, 0.0, 0.0, 98.0, 99.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [77.0, 21.32467532467533, 3.9082960294385614, 12.0, 18.0, 24.0, 25.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [77.0, 20.870129870129873, 3.843486114093248, 12.0, 17.0, 23.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [77.0, 55.880519480519474, 10.886024707721157, 36.82, 44.97, 61.55, 64.77, 72.27]}, "\u5916\u56fd\u8bed\u8a00\u6587\u5b66\u7c7b": {"\u5e8f\u53f7": [158.0, 7734.5, 45.75478117093338, 7656.0, 7695.25, 7734.5, 7773.75, 7813.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [158.0, 86.62265822784809, 3.706412659114639, 70.36, 85.0875, 87.13, 88.89500000000002, 92.36], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [158.0, 87.64949367088606, 3.29589375823384, 73.5, 86.4225, 88.19, 89.77000000000002, 93.14], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [158.0, 0.5198101265822785, 0.8491250435092782, 0.0, 0.0, 0.18, 0.73, 5.28], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [158.0, 57.493670886075954, 49.49306672610506, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [158.0, 22.924050632911392, 0.9809932818709972, 17.0, 22.0, 23.0, 24.0, 24.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [158.0, 22.77848101265823, 1.165444163554522, 17.0, 22.0, 23.0, 24.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [158.0, 56.42272151898734, 8.866775647356434, 38.7, 47.195, 62.39, 64.30250000000001, 66.4]}, "\u4fc4\u8bed": {"\u5e8f\u53f7": [55.0, 7523.872727272727, 138.76439592257654, 7299.0, 7312.5, 7571.0, 7641.5, 7655.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [55.0, 86.38181818181818, 5.307182446636402, 71.66, 83.34, 86.85, 89.875, 94.6], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [55.0, 87.70254545454546, 4.7656518803955725, 76.48, 84.77, 88.52, 90.54, 94.96], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [55.0, 0.982, 1.802789402462093, 0.0, 0.0, 0.0, 1.05, 7.45], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [55.0, 52.65454545454546, 50.31906279739399, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [55.0, 21.527272727272724, 7.078539673246447, 8.0, 13.0, 25.0, 26.5, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [55.0, 21.327272727272728, 7.167453562625334, 7.0, 12.5, 25.0, 26.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [55.0, 55.70272727272727, 9.752183317661716, 39.41, 46.345, 60.98, 64.565, 69.18]}, "\u793e\u4f1a\u5b66": {"\u5e8f\u53f7": [88.0, 168.4318181818182, 75.57622253558438, 53.0, 123.5, 161.5, 251.25, 273.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [88.0, 86.59954545454546, 8.725822677559346, 13.02, 85.5475, 88.1, 90.3975, 94.24], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [88.0, 86.83749999999998, 7.974279666960306, 19.89, 85.6825, 88.10499999999998, 90.055, 94.31], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [88.0, 1.945681818181818, 2.416361278582145, 0.0, 0.0, 1.025, 2.75, 10.85], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [88.0, 72.68181818181819, 43.52685667296264, 0.0, 0.0, 98.5, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [88.0, 22.363636363636363, 4.049072032703148, 15.0, 19.75, 22.0, 27.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [88.0, 22.09090909090909, 4.540080417628865, 4.0, 18.75, 22.0, 27.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [88.0, 59.11613636363636, 9.453161416309383, 7.16, 49.82, 62.84, 64.94250000000001, 69.67]}, "\u7ecf\u6d4e\u7ba1\u7406\u8bd5\u9a8c\u73ed": {"\u5e8f\u53f7": [213.0, 14260.0, 61.631972222215964, 14154.0, 14207.0, 14260.0, 14313.0, 14366.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [213.0, 82.92319248826291, 8.96396181707935, 29.5, 80.43, 85.05, 88.15, 92.93], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [213.0, 83.81323943661972, 8.568441455997263, 29.08, 82.11, 85.79, 88.68, 93.0], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [213.0, 2.000469483568075, 3.872179529263509, 0.0, 0.0, 0.0, 2.25, 22.45], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [213.0, 42.347417840375584, 47.7869826693486, 0.0, 0.0, 0.0, 94.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [213.0, 18.464788732394368, 3.3286817575267404, 3.0, 16.0, 20.0, 21.0, 24.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [213.0, 17.906103286384976, 3.819094322232929, 3.0, 15.0, 19.0, 21.0, 23.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [213.0, 52.56032863849765, 10.987806980921073, 16.22, 44.4, 48.98, 63.07, 70.63]}, "\u91d1\u878d\u5b66(CFA)": {"\u5e8f\u53f7": [152.0, 2994.078947368421, 305.85425967791105, 2575.0, 2612.75, 3144.5, 3278.25, 3316.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [152.0, 85.25723684210527, 8.877650947977756, 23.93, 82.54499999999999, 87.525, 90.4725, 97.06], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [152.0, 86.17967105263156, 8.40997314118469, 22.81, 83.68499999999997, 87.925, 90.745, 97.1], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [152.0, 1.8827631578947368, 2.3768717817150216, 0.0, 0.0, 1.225, 2.7275, 11.15], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [152.0, 67.99342105263158, 46.35359301682972, 0.0, 0.0, 99.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [152.0, 20.032894736842106, 3.9707836368698106, 11.0, 16.0, 22.0, 23.0, 24.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [152.0, 19.63157894736842, 4.254618387454404, 4.0, 15.75, 22.0, 23.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [152.0, 57.65519736842106, 11.026247130760417, 13.16, 46.4975, 63.27, 65.52749999999999, 71.59]}, "\u7f51\u7edc\u4e0e\u65b0\u5a92\u4f53": {"\u5e8f\u53f7": [41.0, 7985.0, 11.97914855071094, 7965.0, 7975.0, 7985.0, 7995.0, 8005.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [41.0, 85.19585365853658, 8.164497833795338, 48.75, 84.52, 87.23, 89.61, 93.63], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [41.0, 85.82707317073171, 7.914386029219966, 49.39, 85.45, 88.0, 89.58, 94.0], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [41.0, 2.3243902439024398, 5.412472655256787, 0.0, 0.0, 0.0, 1.7, 25.15], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [41.0, 48.78048780487804, 50.60608273474739, 0.0, 0.0, 0.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [41.0, 20.70731707317073, 1.9524843461475485, 16.0, 20.0, 21.0, 22.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [41.0, 19.97560975609756, 2.185037812922797, 12.0, 19.0, 20.0, 21.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [41.0, 54.871707317073174, 11.343085317152259, 26.81, 46.74, 48.84, 64.62, 74.04]}, "\u7edf\u8ba1\u5b66": {"\u5e8f\u53f7": [48.0, 12886.0, 188.3649694134439, 12574.0, 12873.75, 12885.5, 13065.25, 13077.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [48.0, 82.39812500000002, 12.73882833989862, 36.09, 79.605, 86.155, 90.05, 96.67], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [48.0, 82.39208333333333, 12.584377508224375, 36.25, 79.93, 86.565, 89.3325, 95.0], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [48.0, 0.37333333333333335, 0.8520222086140895, 0.0, 0.0, 0.0, 0.15, 3.85], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [48.0, 50.97916666666666, 45.45677843483586, 0.0, 0.0, 88.5, 91.0, 97.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [48.0, 16.25, 8.027876961603129, 1.0, 16.0, 18.0, 23.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [48.0, 15.729166666666664, 8.21192589776324, 0.0, 14.5, 18.0, 23.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [48.0, 53.078125, 11.246335886752608, 19.85, 45.30750000000001, 56.51, 62.3775, 65.73]}, "\u56fd\u9645\u5546\u52a1(\u4e2d\u6cd5\u96f7\u6069\u5546\u5b66\u9662)": {"\u5e8f\u53f7": [66.0, 1031.3333333333333, 199.29462792044527, 601.0, 909.25, 1164.5, 1180.75, 1197.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [66.0, 83.25621212121213, 4.832889170975033, 67.96, 81.37, 83.745, 86.60749999999999, 90.63], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [66.0, 84.63424242424242, 3.9467891762627514, 72.46, 83.38499999999998, 85.19999999999997, 87.39750000000002, 90.27], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [66.0, 1.1731818181818183, 1.8221240007545796, 0.0, 0.0, 0.465, 1.4725, 7.9], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [66.0, 63.92424242424242, 47.1417863328069, 0.0, 0.0, 97.0, 99.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [66.0, 21.424242424242426, 3.4865041166921, 13.0, 20.0, 21.0, 24.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [66.0, 21.0, 3.2628444409983515, 13.0, 20.0, 21.0, 23.75, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [66.0, 55.73242424242424, 8.828634890663109, 37.38, 46.725, 60.725, 62.505, 64.64]}, "\u7ecf\u6d4e\u5b66": {"\u5e8f\u53f7": [546.0, 648.6868131868133, 251.05763600502397, 274.0, 410.25, 661.5, 925.75, 1062.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [546.0, 82.71388278388278, 8.571371869310942, 6.78, 79.7975, 84.22, 87.85749999999999, 95.15], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [546.0, 84.0691391941392, 8.071186752140536, 11.14, 82.05749999999998, 85.73, 88.52, 94.87], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [546.0, 1.6565567765567766, 2.49757516412224, 0.0, 0.0, 0.51, 2.4, 13.72], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [546.0, 60.979853479853475, 48.110667118848966, 0.0, 0.0, 98.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [546.0, 19.96886446886447, 4.3680387755719785, 3.0, 16.0, 21.0, 24.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [546.0, 19.26923076923077, 4.507979281825, 1.0, 16.0, 20.0, 23.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [546.0, 55.136758241758244, 10.992337828670061, 3.73, 44.8725, 60.855, 63.875, 70.17]}, "\u5b89\u5168\u5de5\u7a0b": {"\u5e8f\u53f7": [81.0, 13774.555555555557, 130.81093226485316, 13533.0, 13772.0, 13792.0, 13889.0, 13909.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [81.0, 84.310987654321, 6.239792185028735, 62.99, 81.71, 85.13, 88.52, 93.05], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [81.0, 84.96111111111111, 5.576001255380059, 63.89, 83.0, 85.96, 88.33, 93.45], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [81.0, 2.521358024691358, 3.925788058812657, 0.0, 0.0, 0.35, 4.02, 18.95], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [81.0, 68.93827160493828, 46.35955825906142, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [81.0, 23.839506172839503, 2.5566422810175102, 14.0, 23.0, 24.0, 26.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [81.0, 23.493827160493822, 2.70242232446246, 11.0, 22.0, 24.0, 25.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [81.0, 57.468518518518536, 9.736187281363161, 34.64, 47.81, 61.39, 64.5, 71.85]}, "\u4f1a\u8ba1\u5b66": {"\u5e8f\u53f7": [407.0, 11056.292383292383, 434.75097964403574, 10350.0, 10668.0, 11341.0, 11442.5, 11544.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [407.0, 84.14368550368549, 7.878908314977642, 26.7, 80.985, 85.93, 89.36, 96.1], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [407.0, 85.31390663390663, 7.049086495064919, 33.15, 82.84, 86.7, 89.67, 96.06], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [407.0, 1.1843488943488945, 2.2018458459221066, 0.0, 0.0, 0.08, 1.5750000000000002, 14.9], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [407.0, 64.2039312039312, 47.82774082464427, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [407.0, 21.53316953316953, 3.1212375227076454, 12.0, 21.0, 22.0, 23.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [407.0, 20.997542997543, 3.453062303009729, 3.0, 20.0, 22.0, 23.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [407.0, 56.26501228501229, 10.459420503936814, 14.68, 46.065, 61.6, 64.35499999999999, 70.93]}, "\u5de5\u5546\u7ba1\u7406\u7c7b": {"\u5e8f\u53f7": [403.0, 9992.0, 116.48032738049231, 9791.0, 9891.5, 9992.0, 10092.5, 10193.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [403.0, 84.68439205955335, 4.856105539430342, 56.22, 82.195, 85.67, 87.835, 93.33], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [403.0, 85.89908188585608, 4.041199381192625, 55.68, 84.245, 86.74, 88.43, 92.81], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [403.0, 0.5804714640198511, 1.1880384460563769, 0.0, 0.0, 0.05, 0.8, 13.55], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [403.0, 57.93300248138958, 49.30474811550937, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [403.0, 20.687344913151364, 0.8902532747352272, 18.0, 20.0, 21.0, 21.0, 25.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [403.0, 20.379652605459054, 1.2567362287562844, 10.0, 20.0, 21.0, 21.0, 25.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [403.0, 55.440545905707204, 9.357104236955236, 30.92, 45.78, 61.48, 63.42, 67.15]}, "\u8fb9\u9632\u7ba1\u7406": {"\u5e8f\u53f7": [84.0, 6603.7619047619055, 145.23388856148418, 6427.0, 6447.75, 6715.5, 6736.25, 6757.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [84.0, 85.46297619047621, 4.802793810374171, 64.53, 83.02250000000002, 86.215, 88.0325, 95.53], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [84.0, 86.25285714285715, 4.807022366032711, 63.35, 84.0775, 87.03, 88.8325, 96.41], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [84.0, 1.903452380952381, 2.9786426495720644, 0.0, 0.0, 0.75, 3.075, 17.6], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [84.0, 60.83333333333334, 46.911563383844566, 0.0, 0.0, 92.5, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [84.0, 20.916666666666668, 4.9751389962621655, 11.0, 16.0, 24.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [84.0, 20.714285714285715, 4.978438881870134, 11.0, 15.75, 22.5, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [84.0, 56.70047619047621, 9.2108454806986, 35.49, 47.135, 60.935, 64.23500000000001, 71.51]}, "\u4f1a\u8ba1\u5b66\uff08CPA Canada\uff09": {"\u5e8f\u53f7": [149.0, 11311.610738255034, 372.601912621656, 10835.0, 10872.0, 11314.0, 11757.0, 11794.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [149.0, 85.68973154362415, 8.720234232093732, 23.45, 83.34, 87.78, 91.35, 95.33], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [149.0, 86.6186577181208, 8.114898598700211, 25.33, 84.35, 88.48, 91.48, 95.48], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [149.0, 1.444563758389262, 2.3931646703661, 0.0, 0.0, 0.15, 2.28, 17.85], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [149.0, 64.2751677852349, 47.92179144617661, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [149.0, 21.50335570469799, 3.5860543722114837, 13.0, 19.0, 23.0, 24.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [149.0, 20.953020134228183, 3.94957330995045, 8.0, 18.0, 22.0, 24.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [149.0, 57.20409395973154, 10.854689297620117, 12.9, 46.52, 62.78, 65.71, 71.44]}, "\u52b3\u52a8\u4e0e\u793e\u4f1a\u4fdd\u969c": {"\u5e8f\u53f7": [96.0, 12010.9375, 112.24201413393341, 11871.0, 11894.75, 12092.5, 12116.25, 12140.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [96.0, 85.43833333333333, 5.814748157947244, 67.0, 81.0475, 86.63, 89.7525, 93.84], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [96.0, 86.56208333333332, 5.0666197423958215, 70.44, 83.66000000000003, 87.615, 90.2575, 93.67], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [96.0, 2.826354166666667, 5.4871561265792455, 0.0, 0.0, 0.75, 3.0575, 42.15], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [96.0, 53.39583333333334, 47.40674594826678, 0.0, 0.0, 91.5, 94.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [96.0, 21.291666666666668, 3.5419788304121362, 11.0, 18.0, 23.0, 24.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [96.0, 20.854166666666668, 3.5510685320475366, 7.0, 17.75, 22.5, 24.0, 25.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [96.0, 55.84833333333333, 9.752574253057675, 36.85, 47.33750000000001, 59.035, 63.9475, 77.59]}, "\u6570\u5b57\u5a92\u4f53\u827a\u672f": {"\u5e8f\u53f7": [207.0, 8117.840579710145, 158.7358699335024, 7897.0, 7948.5, 8105.0, 8298.5, 8350.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [207.0, 84.42541062801934, 5.6024338244865115, 51.6, 83.58500000000002, 85.42, 87.235, 93.08], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [207.0, 84.77425120772948, 5.938749197741535, 45.0, 84.19, 85.73, 87.49000000000002, 93.56], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [207.0, 0.8523188405797102, 1.6990486872177952, 0.0, 0.0, 0.0, 0.9, 8.5], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [207.0, 56.705314009661826, 48.91100617470754, 0.0, 0.0, 94.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [207.0, 21.512077294685987, 2.6010824919480853, 4.0, 21.0, 22.0, 23.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [207.0, 21.10144927536232, 3.1165620568911114, 3.0, 20.0, 22.0, 23.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [207.0, 55.19550724637682, 9.154954179451684, 28.38, 46.505, 60.58, 62.675, 68.0]}, "\u65c5\u6e38\u7ba1\u7406": {"\u5e8f\u53f7": [75.0, 9309.84, 300.79327731130513, 8957.0, 8975.5, 9558.0, 9576.5, 9595.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [75.0, 83.31746666666666, 6.619739133696902, 58.76, 79.28, 84.38, 88.19999999999997, 95.37], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [75.0, 84.64493333333333, 5.948788287549835, 61.47, 81.50999999999998, 85.65, 88.735, 95.2], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [75.0, 1.7822666666666664, 1.9724402319128629, 0.0, 0.0, 1.33, 3.075, 7.85], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [75.0, 69.97333333333333, 43.99507752972878, 0.0, 0.0, 97.0, 98.0, 99.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [75.0, 20.48, 4.799662150272325, 11.0, 16.0, 24.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [75.0, 19.733333333333334, 4.740091609712673, 10.0, 15.5, 20.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [75.0, 56.8548, 9.516604885175203, 32.32, 46.39, 61.1, 63.7, 68.92]}, "\u56fd\u9645\u5546\u52a1": {"\u5e8f\u53f7": [312.0, 824.8429487179487, 229.8198742765712, 494.0, 571.75, 840.5, 1080.25, 1158.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [312.0, 83.14689102564103, 8.703998320669731, 0.0, 80.7175, 84.92500000000003, 87.80000000000003, 94.0], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [312.0, 84.29153846153847, 8.351208253752944, 0.0, 82.575, 85.89500000000002, 88.23750000000003, 94.24], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [312.0, 1.5779807692307692, 2.2735798562999805, 0.0, 0.0, 0.475, 2.4, 12.52], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [312.0, 56.733974358974365, 47.80893510752039, 0.0, 0.0, 91.5, 99.25, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [312.0, 21.221153846153847, 3.814737197530533, 2.0, 19.0, 21.0, 24.25, 30.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [312.0, 20.66346153846154, 4.013507523551286, 0.0, 18.75, 21.0, 24.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [312.0, 54.714294871794884, 10.882779081196787, 0.0, 44.7125, 60.65, 63.6425, 69.25]}, "\u8d38\u6613\u7ecf\u6d4e": {"\u5e8f\u53f7": [110.0, 8890.118181818181, 337.8271837617675, 8569.0, 8596.25, 8623.5, 9274.75, 9302.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [110.0, 82.9967272727273, 8.974251762435667, 29.82, 80.18, 84.62, 88.55749999999998, 93.65], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [110.0, 84.26309090909092, 8.430326508358457, 32.08, 81.9725, 86.025, 88.96, 94.05], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [110.0, 1.996272727272728, 3.069104958459121, 0.0, 0.0, 1.2, 2.6875, 20.55], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [110.0, 89.67272727272726, 28.6961651022626, 0.0, 98.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [110.0, 20.63636363636364, 3.4739588836471658, 10.0, 17.25, 21.0, 24.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [110.0, 19.954545454545453, 3.808215078625535, 4.0, 17.0, 20.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [110.0, 59.69763636363636, 8.279996113910439, 16.4, 58.6225, 61.89, 64.2075, 70.4]}, "\u8d22\u653f\u5b66": {"\u5e8f\u53f7": [263.0, 1461.235741444867, 164.50092674778298, 1244.0, 1309.5, 1375.0, 1629.5, 1695.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [263.0, 82.72593155893536, 9.787511037843514, 26.62, 78.78999999999998, 85.6, 88.91499999999998, 95.22], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [263.0, 83.77996197718633, 9.277306486658922, 25.7, 80.94, 86.5, 89.32, 95.36], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [263.0, 2.7961596958174906, 4.051409622415188, 0.0, 0.0, 1.35, 3.875, 23.38], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [263.0, 64.11406844106465, 47.90936807572341, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [263.0, 20.817490494296575, 3.82400989716444, 3.0, 18.0, 22.0, 24.0, 30.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [263.0, 19.93536121673004, 4.126761081709604, 2.0, 17.0, 20.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [263.0, 55.95532319391636, 12.085789167436571, 14.64, 44.41, 62.18, 64.895, 73.02]}, "\u5e7f\u64ad\u7535\u89c6\u5b66": {"\u5e8f\u53f7": [25.0, 8018.0, 7.359800721939872, 8006.0, 8012.0, 8018.0, 8024.0, 8030.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [25.0, 86.93400000000003, 6.222824921207407, 60.09, 86.56, 88.07, 89.41, 92.96], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [25.0, 87.62440000000002, 6.59553073426746, 58.4, 87.65, 88.8, 89.85, 93.33], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [25.0, 1.3552000000000002, 3.499279830669924, 0.0, 0.0, 0.0, 0.75, 15.75], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [25.0, 48.0, 50.99019513592785, 0.0, 0.0, 0.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [25.0, 21.12, 1.7635192088548397, 19.0, 20.0, 21.0, 21.0, 25.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [25.0, 20.6, 1.7320508075688772, 16.0, 20.0, 21.0, 21.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [25.0, 55.4204, 9.974399514089393, 33.05, 48.22, 49.18, 63.79, 70.65]}, "\u5e02\u573a\u8425\u9500": {"\u5e8f\u53f7": [171.0, 9116.157894736842, 305.86045200233264, 8808.0, 8850.5, 8893.0, 9465.5, 9508.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [171.0, 82.32064327485381, 9.59269073128683, 14.09, 79.54499999999999, 84.47, 88.19, 94.24], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [171.0, 83.41894736842106, 9.379584090404986, 12.0, 81.02000000000002, 85.39, 88.65, 94.48], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [171.0, 2.228538011695907, 3.878141409385902, 0.0, 0.0, 0.8, 2.9850000000000003, 25.98], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [171.0, 63.78947368421053, 45.303448839797895, 0.0, 0.0, 94.0, 97.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [171.0, 20.59649122807017, 3.1818953792251508, 11.0, 18.0, 22.0, 23.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [171.0, 19.859649122807017, 3.6946953857940783, 3.0, 17.0, 20.0, 23.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [171.0, 55.513508771929814, 11.007871861091804, 7.75, 45.645, 60.78, 63.335, 72.1]}, "\u89c6\u89c9\u4f20\u8fbe\u8bbe\u8ba1(\u52a8\u6f2b\u6e38\u620f\u65b9\u5411)": {"\u5e8f\u53f7": [414.0, 14869.330917874397, 238.01012077007562, 14513.0, 14616.25, 14865.5, 15119.75, 15223.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [414.0, 84.44028985507245, 8.271731516959553, 4.65, 83.21, 85.745, 88.12, 93.17], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [414.0, 84.34079710144927, 8.344220983309148, 2.69, 83.4025, 85.84, 87.9375, 93.54], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [414.0, 0.5410869565217391, 1.5388913109757054, 0.0, 0.0, 0.0, 0.15, 11.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [414.0, 47.44927536231884, 48.26978347840728, 0.0, 0.0, 0.0, 97.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [414.0, 22.446859903381643, 5.089116459531941, 6.0, 18.0, 21.0, 29.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [414.0, 21.942028985507246, 5.499418568354007, 0.0, 18.0, 21.0, 29.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [414.0, 53.721932367149755, 10.015321876303908, 2.56, 46.13, 49.14, 62.85, 68.76]}, "\u7ba1\u7406\u79d1\u5b66": {"\u5e8f\u53f7": [134.0, 9192.910447761196, 479.3443119133759, 8632.0, 8665.25, 9314.5, 9756.75, 9790.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [134.0, 83.5320895522388, 6.713423325234287, 54.31, 80.22, 84.79, 88.23, 94.02], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [134.0, 84.7115671641791, 6.3443439797231225, 49.6, 81.94, 86.17500000000003, 89.025, 94.26], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [134.0, 1.534402985074627, 2.1053671160927867, 0.0, 0.0, 0.75, 2.3475, 10.4], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [134.0, 70.74626865671642, 43.13550716583261, 0.0, 0.0, 95.5, 99.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [134.0, 20.783582089552237, 3.544267722492102, 11.0, 18.0, 21.0, 24.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [134.0, 20.30597014925373, 3.6485193452462417, 8.0, 18.0, 21.0, 23.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [134.0, 57.01477611940298, 9.311823409658203, 29.87, 47.44, 61.12000000000001, 63.565, 68.12]}, "\u8d22\u653f\u5b66\u7c7b": {"\u5e8f\u53f7": [234.0, 2045.5, 67.6941651843052, 1929.0, 1987.25, 2045.5, 2103.75, 2162.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [234.0, 84.13662393162393, 6.698961815954295, 33.55, 81.7475, 85.36, 87.85249999999998, 94.22], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [234.0, 85.53106837606839, 5.821791028970742, 32.77, 83.78, 86.535, 88.5475, 93.59], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [234.0, 1.1321367521367522, 1.5588453573627437, 0.0, 0.0, 0.58, 1.7, 10.0], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [234.0, 73.01709401709401, 43.940944157963536, 0.0, 0.0, 99.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [234.0, 21.504273504273506, 0.9368372655981498, 14.0, 21.0, 22.0, 22.0, 24.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [234.0, 21.11111111111111, 1.616852119799738, 6.0, 21.0, 21.5, 22.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [234.0, 57.56760683760684, 9.13887199673225, 18.45, 47.6275, 62.005, 63.7025, 67.62]}, "\u4fe1\u606f\u4e0e\u8ba1\u7b97\u79d1\u5b66": {"\u5e8f\u53f7": [98.0, 12663.27551020408, 147.48047437509132, 12468.0, 12492.25, 12764.5, 12788.75, 12813.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [98.0, 84.15265306122448, 8.384487708012653, 35.09, 78.96, 87.07499999999997, 89.23, 94.56], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [98.0, 84.37938775510204, 8.562550301313793, 28.36, 79.96000000000002, 87.38, 89.185, 94.36], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [98.0, 1.7962244897959188, 2.571646155497445, 0.0, 0.0, 0.625, 2.89, 12.6], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [98.0, 52.74489795918368, 45.444496842725066, 0.0, 0.0, 77.0, 94.75, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [98.0, 18.3265306122449, 4.676714659267536, 10.0, 13.0, 21.0, 22.0, 24.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [98.0, 17.877551020408163, 4.730391553555308, 4.0, 13.0, 20.0, 22.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [98.0, 54.73459183673469, 10.771134312028966, 19.3, 44.14750000000001, 59.975, 63.975, 68.46]}, "\u5546\u52a1\u82f1\u8bed": {"\u5e8f\u53f7": [173.0, 7387.491329479769, 132.0047840261115, 7214.0, 7257.0, 7472.0, 7515.0, 7558.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [173.0, 86.40514450867052, 5.401874739915766, 64.22, 84.51, 87.59, 90.0, 94.37], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [173.0, 86.61092485549133, 5.116182631715238, 58.46, 84.82, 87.67, 89.95, 94.0], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [173.0, 2.409653179190752, 3.5429651712368546, 0.0, 0.0, 1.35, 3.4, 22.32], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [173.0, 56.554913294797686, 49.61964213497416, 0.0, 0.0, 99.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [173.0, 23.46242774566474, 4.315336212848702, 13.0, 19.0, 25.0, 27.0, 30.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [173.0, 23.24277456647399, 4.3574338166317705, 9.0, 19.0, 24.0, 27.0, 30.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [173.0, 56.729132947976865, 9.99723617909441, 35.32, 47.33, 62.32, 65.1, 72.96]}, "\u91d1\u878d\u6570\u5b66": {"\u5e8f\u53f7": [217.0, 13027.2534562212, 179.9891851163079, 12704.0, 13001.0, 13055.0, 13172.0, 13226.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [217.0, 84.6578801843318, 8.097457026770352, 25.6, 81.81, 86.16, 89.68, 96.44], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [217.0, 85.46465437788021, 7.255071725108843, 27.72, 83.19, 86.48, 89.82, 96.25], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [217.0, 1.313087557603687, 2.4711455501975466, 0.0, 0.0, 0.45, 1.58, 23.83], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [217.0, 71.97235023041475, 38.61945358124333, 0.0, 87.0, 90.0, 92.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [217.0, 20.746543778801843, 4.376420355594464, 1.0, 21.0, 22.0, 24.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [217.0, 20.262672811059907, 4.565382853692023, 1.0, 18.0, 22.0, 23.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [217.0, 57.75188940092166, 8.750160878242104, 14.08, 53.35, 60.83, 63.84, 75.19]}, "\u884c\u653f\u7ba1\u7406": {"\u5e8f\u53f7": [94.0, 11919.627659574468, 101.43560741932798, 11795.0, 11818.25, 11994.5, 12017.75, 12041.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [94.0, 84.93585106382979, 10.561949092035087, 20.33, 83.22, 87.48, 90.3025, 95.21], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [94.0, 85.8401063829787, 10.325242218479982, 20.33, 84.74749999999997, 88.11500000000002, 90.58, 95.41], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [94.0, 3.140212765957447, 3.7635001378473754, 0.0, 0.0, 2.26, 4.9325, 16.45], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [94.0, 63.829787234042556, 47.28013934305112, 0.0, 0.0, 99.5, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [94.0, 21.170212765957448, 4.107790390188837, 3.0, 17.25, 23.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [94.0, 20.617021276595747, 4.3455734070547685, 1.0, 17.0, 21.0, 24.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [94.0, 57.2309574468085, 11.355387435249465, 11.18, 48.765, 62.28, 65.3325, 72.18]}, "\u5e94\u7528\u7edf\u8ba1\u5b66": {"\u5e8f\u53f7": [111.0, 12813.837837837837, 150.50149745800118, 12645.0, 12672.5, 12700.0, 12970.5, 12998.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [111.0, 83.72693693693695, 10.113091317045248, 21.58, 81.805, 85.63, 90.68, 96.57], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [111.0, 84.7144144144144, 8.931078493836175, 28.64, 82.75999999999998, 86.42, 90.385, 96.47], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [111.0, 1.66018018018018, 3.3847886954276065, 0.0, 0.0, 0.27, 1.65, 25.45], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [111.0, 54.261261261261254, 46.98330684435825, 0.0, 0.0, 85.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [111.0, 20.297297297297302, 5.5752612569760425, 1.0, 16.0, 20.0, 26.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [111.0, 19.53153153153153, 5.531430556078961, 1.0, 15.0, 18.0, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [111.0, 54.68684684684685, 11.586630460223775, 11.87, 45.74, 59.92, 64.33500000000001, 75.75]}, "\u4f1a\u8ba1\u5b66(\u6ce8\u518c\u4f1a\u8ba1\u5e08\u65b9\u5411)": {"\u5e8f\u53f7": [221.0, 10784.194570135749, 271.0381609619857, 10452.0, 10507.0, 10989.0, 11044.0, 11099.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [221.0, 85.4220814479638, 8.920345295633801, 17.78, 82.78, 87.61, 90.56, 95.75], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [221.0, 86.8681447963801, 7.98905869394526, 21.17, 84.85, 88.75, 91.32, 95.83], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [221.0, 2.2583257918552038, 2.9012397667697685, 0.0, 0.0, 1.2, 3.57, 15.95], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [221.0, 58.16289592760182, 49.23137099205447, 0.0, 0.0, 99.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [221.0, 21.524886877828056, 4.2911712335127135, 13.0, 17.0, 24.0, 25.0, 32.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [221.0, 20.97737556561086, 4.360403900092938, 8.0, 17.0, 22.0, 25.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [221.0, 56.38420814479638, 11.323280280110238, 9.78, 46.62, 62.78, 65.86, 71.27]}, "\u82f1\u8bed": {"\u5e8f\u53f7": [179.0, 7227.223463687151, 129.1853702854957, 7059.0, 7103.5, 7148.0, 7355.5, 7400.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [179.0, 86.38290502793295, 6.373422117742527, 34.17, 84.45500000000001, 87.92, 90.065, 93.74], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [179.0, 86.60351955307263, 6.421525722079966, 28.84, 84.58, 88.0, 90.215, 93.97], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [179.0, 1.830558659217877, 2.8500953503999167, 0.0, 0.0, 0.0, 2.7, 12.38], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [179.0, 48.44692737430167, 49.966744323187, 0.0, 0.0, 0.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [179.0, 23.56983240223464, 5.949165315343093, 6.0, 18.0, 22.0, 30.0, 31.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [179.0, 23.16201117318436, 5.974807446466067, 5.0, 18.0, 21.0, 29.0, 31.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [179.0, 55.326648044692746, 10.233079206650794, 18.79, 46.685, 50.05, 65.22999999999999, 69.85]}, "\u5de5\u5546\u7ba1\u7406\uff08\u56fd\u9645\u73ed\uff09": {"\u5e8f\u53f7": [24.0, 9735.5, 7.071067811865476, 9724.0, 9729.75, 9735.5, 9741.25, 9747.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [24.0, 84.36041666666667, 7.357898730743992, 62.21, 79.7425, 88.015, 89.46, 91.0], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [24.0, 85.67125, 5.967652158312237, 67.8, 81.9975, 88.545, 90.09, 91.61], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [24.0, 2.8875000000000006, 2.89996139404588, 0.0, 0.0, 2.325, 5.21, 9.85], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [24.0, 70.33333333333333, 46.11013909690831, 0.0, 0.0, 98.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [24.0, 23.54166666666667, 1.3180739131701644, 21.0, 23.0, 23.0, 24.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [24.0, 22.875, 2.401313046611393, 15.0, 22.75, 23.0, 24.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [24.0, 57.81458333333333, 10.703346887840702, 34.22, 46.135, 64.395, 65.6, 66.84]}, "\u8d22\u653f\u5b66(\u4e2d\u82f1\u73ed)": {"\u5e8f\u53f7": [169.0, 1771.3846153846155, 151.24680240618392, 1524.0, 1566.0, 1844.0, 1886.0, 1928.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [169.0, 82.40349112426034, 8.833419914300533, 19.58, 79.49, 84.52, 87.48, 94.02], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [169.0, 83.59615384615384, 8.735329265743356, 21.2, 81.36, 85.55, 88.2, 93.75], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [169.0, 1.5930769230769233, 2.431871707142464, 0.0, 0.0, 0.45, 2.4, 13.22], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [169.0, 56.71005917159764, 49.600714814562146, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [169.0, 22.005917159763317, 2.4090529689864355, 14.0, 21.0, 22.0, 24.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [169.0, 21.21301775147929, 3.0299412230535427, 5.0, 20.0, 22.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [169.0, 54.30686390532545, 11.011060358812662, 10.77, 44.75, 59.42, 63.56, 70.47]}, "\u5de5\u7a0b\u7ba1\u7406": {"\u5e8f\u53f7": [101.0, 2568.4752475247524, 300.8825549632085, 2263.0, 2288.0, 2313.0, 2887.0, 2912.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [101.0, 83.48633663366336, 8.017892830759497, 50.47, 80.0, 85.63, 88.33, 95.65], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [101.0, 84.66603960396041, 7.162689031251869, 56.63, 81.31, 86.28, 89.2, 95.8], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [101.0, 2.5844554455445548, 3.354086306357522, 0.0, 0.0, 1.2, 3.75, 13.7], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [101.0, 68.99009900990099, 45.10044235913988, 0.0, 0.0, 96.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [101.0, 20.544554455445546, 4.4553894385906325, 13.0, 16.0, 22.0, 25.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [101.0, 19.84158415841584, 4.406206244077384, 13.0, 16.0, 19.0, 25.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [101.0, 57.041782178217844, 10.548259514824196, 27.76, 46.54, 62.49, 64.62, 71.33]}, "\u8ba1\u7b97\u673a\u79d1\u5b66\u4e0e\u6280\u672f": {"\u5e8f\u53f7": [112.0, 13616.098214285714, 120.96868478860635, 13474.0, 13501.75, 13529.5, 13740.25, 13768.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [112.0, 84.21848214285716, 10.35345267821506, 26.56, 80.58, 86.74, 90.395, 96.76], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [112.0, 85.0810714285714, 10.14534565607986, 25.15, 82.31, 87.265, 90.6575, 97.0], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [112.0, 1.680892857142857, 3.099800793823687, 0.0, 0.0, 0.475, 2.385, 24.0], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [112.0, 57.14285714285714, 49.709581280095996, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [112.0, 20.732142857142858, 4.435690918600384, 12.0, 16.0, 20.0, 25.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [112.0, 20.258928571428573, 4.801924418499121, 3.0, 16.0, 19.5, 25.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [112.0, 55.39589285714286, 11.913691839630491, 14.61, 44.955, 61.73, 64.9975, 74.2]}, "\u91d1\u878d\u5b66": {"\u5e8f\u53f7": [211.0, 2526.824644549763, 300.619855757181, 2163.0, 2215.5, 2760.0, 2812.5, 2865.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [211.0, 83.21445497630332, 12.68160648008841, 0.0, 82.14500000000002, 86.48, 89.655, 94.96], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [211.0, 84.46691943127962, 12.314503430939494, 0.0, 83.58, 87.69, 90.33, 94.93], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [211.0, 2.6413270142180094, 3.835652566591517, 0.0, 0.0, 1.45, 3.575, 25.92], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [211.0, 64.45497630331754, 47.978781137125594, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [211.0, 21.53554502369668, 4.694720140917308, 5.0, 17.0, 24.0, 25.0, 34.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [211.0, 20.786729857819907, 5.183032226869801, 0.0, 17.0, 23.0, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [211.0, 56.22881516587678, 12.871848611785381, 0.0, 46.540000000000006, 63.14, 65.34, 74.14]}, "\u7edf\u8ba1\u5b66\u7c7b": {"\u5e8f\u53f7": [146.0, 13299.5, 42.290660907581, 13227.0, 13263.25, 13299.5, 13335.75, 13372.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [146.0, 83.58794520547946, 5.564328000174736, 62.43, 79.36500000000002, 84.17, 87.86, 93.37], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [146.0, 85.83246575342466, 3.8200999376065856, 70.79, 83.35749999999999, 86.315, 88.61749999999998, 92.89], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [146.0, 0.7756164383561645, 1.007824541792003, 0.0, 0.16249999999999998, 0.48, 0.98, 6.58], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [146.0, 91.44520547945206, 1.186305897155089, 89.0, 91.0, 91.0, 92.0, 94.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [146.0, 19.116438356164387, 0.5931828115328095, 19.0, 19.0, 19.0, 19.0, 23.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [146.0, 18.869863013698627, 0.8887317475123594, 15.0, 19.0, 19.0, 19.0, 23.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [146.0, 59.92328767123286, 3.2188636053393105, 48.03, 57.7125, 60.325, 62.3975, 65.78]}, "\u4fe1\u606f\u7ba1\u7406\u4e0e\u4fe1\u606f\u7cfb\u7edf": {"\u5e8f\u53f7": [112.0, 13509.875, 121.72936493832657, 13373.0, 13400.75, 13428.5, 13642.25, 13670.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [112.0, 80.75330357142856, 15.68166074058133, 3.87, 80.245, 85.225, 88.39999999999998, 94.89], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [112.0, 81.84285714285714, 15.62998397217345, 6.0, 82.005, 86.41499999999998, 88.95750000000002, 95.64], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [112.0, 2.3732142857142864, 3.6040668256010018, 0.0, 0.0, 0.375, 4.245, 23.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [112.0, 48.214285714285715, 50.19267894130597, 0.0, 0.0, 0.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [112.0, 18.616071428571427, 5.860611436468588, 1.0, 14.0, 17.0, 25.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [112.0, 17.678571428571427, 6.346190296085619, 1.0, 14.0, 15.5, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [112.0, 52.358392857142846, 14.285949094756234, 2.13, 44.30750000000001, 49.34, 64.545, 72.99]}, "\u4f1a\u8ba1\u5b66\uff08ACCA\u65b9\u5411\uff09": {"\u5e8f\u53f7": [130.0, 11165.315384615384, 424.2592090994194, 10711.0, 10743.25, 11213.5, 11662.75, 11695.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [130.0, 84.67969230769229, 8.137385152116979, 38.88, 81.6775, 86.36500000000002, 89.34249999999999, 95.23], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [130.0, 85.9116923076923, 7.380411444010838, 46.33, 84.14, 87.465, 90.1275, 95.41], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [130.0, 1.721923076923077, 2.8222661454206186, 0.0, 0.0, 0.5, 2.1875, 18.5], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [130.0, 73.84615384615384, 44.117261214069174, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [130.0, 19.96153846153846, 4.141684198775326, 11.0, 16.0, 22.0, 22.75, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [130.0, 19.476923076923075, 4.413185642301581, 6.0, 16.0, 22.0, 22.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [130.0, 58.16738461538462, 10.288367748880074, 21.38, 48.59, 62.655, 64.8175, 71.22]}, "\u4eba\u529b\u8d44\u6e90\u7ba1\u7406": {"\u5e8f\u53f7": [95.0, 9215.473684210529, 301.2405853426108, 8907.0, 8930.5, 8954.0, 9529.5, 9553.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [95.0, 85.44326315789475, 5.861082508777031, 63.43, 82.245, 86.39, 90.19, 95.23], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [95.0, 86.59536842105263, 4.997189808266564, 68.53, 83.88499999999998, 87.42, 90.235, 95.5], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [95.0, 2.0888421052631583, 2.5101296326437748, 0.0, 0.0, 1.5, 3.535, 12.2], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [95.0, 56.66315789473684, 45.578459480822936, 0.0, 0.0, 90.0, 93.5, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [95.0, 19.48421052631579, 5.939165278936621, 11.0, 13.0, 20.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [95.0, 19.126315789473683, 5.840508039078045, 11.0, 13.0, 19.0, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [95.0, 56.12000000000002, 9.63785874956651, 34.89, 45.9, 61.27, 64.4, 68.07]}, "\u7535\u5b50\u5546\u52a1(\u6280\u672f\u65b9\u5411)": {"\u5e8f\u53f7": [83.0, 13583.807228915664, 120.16609012278872, 13436.0, 13456.5, 13674.0, 13694.5, 13715.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [83.0, 85.04469879518072, 6.0964746585078, 56.68, 81.775, 86.16, 89.06, 93.39], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [83.0, 85.77771084337348, 5.9169185547598575, 55.68, 82.865, 86.93, 89.735, 93.93], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [83.0, 1.672289156626506, 2.139280324224176, 0.0, 0.0, 1.05, 2.835, 9.15], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [83.0, 57.83132530120483, 49.68309799389464, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [83.0, 21.108433734939762, 6.0948039608977504, 11.0, 15.0, 25.0, 27.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [83.0, 20.819277108433734, 6.085056823417977, 11.0, 15.0, 25.0, 26.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [83.0, 55.95108433734941, 10.18710639066618, 31.17, 45.865, 62.03, 64.655, 68.29]}, "\u6c49\u8bed\u8a00\u6587\u5b66": {"\u5e8f\u53f7": [109.0, 8077.788990825688, 154.1522259539729, 7866.0, 7893.0, 8054.0, 8254.0, 8281.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [109.0, 87.10669724770644, 4.234934529872589, 72.81, 84.78, 87.36, 89.66, 94.55], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [109.0, 87.51642201834862, 4.008185726766095, 72.5, 85.56, 87.56, 90.0, 94.68], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [109.0, 2.0483486238532107, 3.0735467851163434, 0.0, 0.0, 0.0, 4.05, 16.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [109.0, 45.91743119266055, 48.35844719966049, 0.0, 0.0, 0.0, 96.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [109.0, 23.376146788990827, 3.24262408262451, 14.0, 21.0, 24.0, 26.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [109.0, 23.24770642201835, 3.317060175714368, 12.0, 21.0, 24.0, 26.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [109.0, 55.41100917431192, 9.38158074662637, 40.05, 46.69, 50.19, 64.8, 70.54]}, "\u6cd5\u8bed": {"\u5e8f\u53f7": [65.0, 7426.3076923076915, 175.27540142916192, 7192.0, 7208.0, 7459.0, 7620.0, 7636.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [65.0, 85.31169230769231, 4.379954897467113, 73.43, 82.66, 85.58, 88.08, 95.71], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [65.0, 86.57692307692308, 3.4652479723124268, 78.32, 83.9, 86.58, 88.72, 95.41], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [65.0, 1.4156923076923078, 2.1331761598250982, 0.0, 0.0, 0.32, 2.1, 8.75], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [65.0, 54.95384615384615, 49.71651849776351, 0.0, 0.0, 98.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [65.0, 20.93846153846154, 2.8607086265738157, 16.0, 18.0, 22.0, 23.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [65.0, 20.861538461538466, 2.860708626573816, 16.0, 18.0, 22.0, 23.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [65.0, 55.58938461538462, 9.48394167081307, 40.39, 45.54, 61.42, 63.27, 70.11]}, "\u91d1\u878d\u5de5\u7a0b": {"\u5e8f\u53f7": [108.0, 2742.3148148148152, 282.3768161880967, 2466.0, 2492.75, 2519.5, 3058.25, 3085.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [108.0, 85.40925925925926, 6.6995512060184295, 65.11, 81.97749999999998, 86.555, 90.38, 95.27], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [108.0, 86.43833333333332, 6.0496151881945055, 62.24, 83.3225, 87.61, 90.9325, 95.33], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [108.0, 2.4111111111111114, 3.107889368041845, 0.0, 0.0, 0.75, 4.405, 12.5], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [108.0, 54.88888888888889, 49.33432263047807, 0.0, 0.0, 97.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [108.0, 18.87037037037037, 3.376921654635148, 11.0, 16.0, 19.5, 22.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [108.0, 18.58333333333333, 3.377011342515248, 11.0, 16.0, 19.0, 21.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [108.0, 55.932222222222244, 10.753540893331287, 35.81, 45.38, 62.17, 65.3, 71.15]}, "\u8d22\u52a1\u7ba1\u7406": {"\u5e8f\u53f7": [365.0, 11060.756164383562, 401.9787775910555, 10558.0, 10649.0, 11129.0, 11556.0, 11647.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [365.0, 84.43495890410959, 7.8159056488000065, 34.3, 81.29, 85.82, 89.61, 95.77], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [365.0, 85.65443835616439, 7.20630870778732, 32.0, 83.29, 86.78, 89.96, 96.05], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [365.0, 1.5064383561643837, 2.281415221241319, 0.0, 0.0, 0.45, 2.35, 12.15], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [365.0, 64.64383561643835, 47.8589301388867, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [365.0, 21.542465753424654, 3.1970933660543923, 8.0, 20.0, 21.0, 24.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [365.0, 21.013698630136982, 3.4723917030911013, 8.0, 19.0, 21.0, 24.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [365.0, 56.58761643835617, 10.324377668803127, 25.06, 46.07, 61.79, 64.98, 70.6]}, "\u91d1\u878d\u5b66\uff08\u4e2d\u7f8e\uff09": {"\u5e8f\u53f7": [80.0, 3026.25, 279.64025262124903, 2717.0, 2736.75, 3246.5, 3278.75, 3336.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [80.0, 79.45375, 17.803273228769697, 12.0, 75.58500000000002, 84.32, 90.715, 95.04], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [80.0, 80.37625, 17.889390914127873, 7.5, 78.23500000000001, 85.39500000000002, 90.6, 95.22], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [80.0, 1.10375, 2.2744371260833587, 0.0, 0.0, 0.0, 1.5125, 15.32], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [80.0, 50.7375, 49.81427372840648, 0.0, 0.0, 93.5, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [80.0, 18.875, 6.500973636913789, 1.0, 13.75, 21.0, 24.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [80.0, 17.6, 7.308050009182263, 1.0, 12.75, 19.5, 23.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [80.0, 51.64149999999999, 15.419040185859965, 6.6, 42.21, 55.18000000000001, 64.965, 71.31]}, "\u8ba1\u7b97\u673a\u7c7b": {"\u5e8f\u53f7": [206.0, 14050.5, 59.611240550755184, 13948.0, 13999.25, 14050.5, 14101.75, 14153.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [206.0, 83.81975728155341, 5.616981607574015, 62.0, 80.21, 84.88, 88.15, 93.02], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [206.0, 85.24529126213592, 4.186459667654627, 68.75, 82.6475, 85.95, 88.52499999999998, 92.67], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [206.0, 0.5816504854368931, 0.7830068337083078, 0.0, 0.12, 0.28, 0.7424999999999999, 4.38], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [206.0, 100.0, 0.0, 100.0, 100.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [206.0, 20.072815533980577, 0.7187650893102535, 18.0, 20.0, 20.0, 21.0, 21.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [206.0, 19.781553398058254, 1.128715874967226, 13.0, 19.0, 20.0, 20.0, 21.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [206.0, 61.27572815533979, 3.1682550716302385, 49.14, 59.25, 61.855, 63.62750000000001, 66.72]}, "\u6295\u8d44\u5b66": {"\u5e8f\u53f7": [194.0, 2679.541237113402, 291.64131005587, 2361.0, 2409.25, 2457.5, 2989.75, 3038.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [194.0, 82.69726804123712, 10.816508504517515, 23.12, 80.3, 85.925, 89.67, 93.49], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [194.0, 83.64041237113402, 10.674146813294412, 20.14, 81.8575, 86.41, 89.985, 94.06], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [194.0, 2.313711340206185, 3.3070180734319323, 0.0, 0.0, 0.94, 3.45, 21.12], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [194.0, 66.44845360824742, 47.290743572586116, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [194.0, 21.03608247422681, 4.636388749409373, 7.0, 17.0, 22.0, 25.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [194.0, 20.1340206185567, 4.921411116520446, 2.0, 16.0, 20.5, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [194.0, 56.145, 12.098448290432515, 12.72, 46.102500000000006, 62.52, 65.21, 71.85]}, "\u7a0e\u6536\u5b66": {"\u5e8f\u53f7": [253.0, 1591.8616600790515, 153.54568833142045, 1387.0, 1450.0, 1513.0, 1748.0, 1811.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [253.0, 82.82581027667985, 9.763421035327145, 32.82, 79.16, 85.54, 88.86, 95.23], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [253.0, 84.06478260869567, 8.985097077728447, 31.2, 81.0, 86.38, 89.31, 95.57], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [253.0, 2.6847826086956523, 3.806726665903752, 0.0, 0.0, 1.05, 4.2, 19.55], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [253.0, 63.24110671936759, 48.31043351152937, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [253.0, 19.63636363636364, 5.0625239386247465, 5.0, 15.0, 21.0, 24.0, 30.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [253.0, 18.695652173913047, 4.950374852485841, 1.0, 14.0, 18.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [253.0, 55.84616600790514, 11.487682323376124, 18.05, 45.91, 61.35, 64.74, 72.3]}, "\u4fa6\u67e5\u5b66": {"\u5e8f\u53f7": [211.0, 6486.165876777252, 135.38690930445722, 6293.0, 6345.5, 6557.0, 6609.5, 6662.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [211.0, 82.59473933649289, 10.40232589849009, 0.0, 79.945, 84.45, 87.785, 94.05], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [211.0, 83.42454976303318, 10.492042161795425, 0.0, 81.27, 85.25, 88.19, 94.53], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [211.0, 1.7005213270142183, 3.0466934790843947, 0.0, 0.0, 0.45, 2.25, 18.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [211.0, 51.99526066350711, 47.72026599837369, 0.0, 0.0, 88.0, 98.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [211.0, 22.274881516587683, 4.506110598286517, 1.0, 19.0, 24.0, 26.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [211.0, 21.79620853080569, 4.8157662530408265, 0.0, 18.0, 23.0, 26.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [211.0, 53.73654028436019, 11.480069888290586, 0.0, 44.535, 58.89, 63.43, 71.03]}, "\u6cbb\u5b89\u5b66": {"\u5e8f\u53f7": [89.0, 6560.9325842696635, 140.9329142271735, 6387.0, 6409.0, 6667.0, 6689.0, 6711.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [89.0, 84.57719101123595, 5.525725783008888, 64.34, 81.74, 85.26, 88.56, 93.27], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [89.0, 85.27314606741571, 5.294946689470155, 67.62, 83.31, 86.46, 88.73, 93.67], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [89.0, 2.242359550561797, 4.6221455620228005, 0.0, 0.0, 0.95, 2.5, 30.38], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [89.0, 55.932584269662925, 47.566412365145986, 0.0, 0.0, 91.0, 98.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [89.0, 22.865168539325843, 3.3850977266541324, 16.0, 20.0, 24.0, 26.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [89.0, 22.58426966292135, 3.4039048057276173, 16.0, 19.0, 24.0, 26.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [89.0, 55.579887640449435, 9.896526306829957, 35.39, 45.84, 60.2, 63.83, 73.84]}, "\u65b0\u95fb\u5b66": {"\u5e8f\u53f7": [52.0, 7839.5, 15.154757228892407, 7814.0, 7826.75, 7839.5, 7852.25, 7865.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [52.0, 88.37403846153845, 2.931961974190584, 80.65, 86.85249999999998, 88.51, 90.61, 92.86], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [52.0, 89.14192307692308, 2.8088983525131566, 81.54, 87.54249999999998, 89.11, 91.09, 93.63], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [52.0, 3.0761538461538462, 4.203601235656909, 0.0, 0.0, 1.375, 5.025, 15.95], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [52.0, 67.30769230769229, 47.3665466715671, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [52.0, 19.51923076923077, 1.985144679030158, 16.0, 18.0, 19.0, 21.0, 25.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [52.0, 19.46153846153846, 1.924675052395919, 16.0, 18.0, 19.0, 21.0, 24.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [52.0, 59.6251923076923, 9.087102795566613, 44.36, 47.8725, 64.375, 65.9225, 70.72]}, "\u519c\u6797\u7ecf\u6d4e\u7ba1\u7406": {"\u5e8f\u53f7": [95.0, 9269.0, 297.4072356715405, 8990.0, 9013.5, 9037.0, 9611.5, 9635.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [95.0, 83.08136842105263, 12.551995061439294, 13.09, 79.59, 86.5, 90.18, 94.8], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [95.0, 84.07684210526315, 12.022923518080473, 13.71, 82.195, 86.7, 90.56, 95.17], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [95.0, 1.9710526315789476, 2.843971030197864, 0.0, 0.0, 0.97, 2.625, 14.9], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [95.0, 57.54736842105264, 49.33833872895433, 0.0, 0.0, 99.0, 99.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [95.0, 21.410526315789475, 4.134686529686162, 9.0, 18.0, 21.0, 25.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [95.0, 20.45263157894737, 4.646592027411588, 1.0, 18.0, 21.0, 25.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [95.0, 54.91810526315789, 12.992782226636518, 7.2, 45.055, 61.83, 65.16499999999999, 70.94]}, "\u516c\u5b89\u5b66\u7c7b": {"\u5e8f\u53f7": [205.0, 6956.0, 59.3225645658266, 6854.0, 6905.0, 6956.0, 7007.0, 7058.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [205.0, 84.58863414634146, 6.3124196044428, 9.32, 82.67, 85.23, 87.66, 91.62], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [205.0, 85.42785365853658, 6.145726578245865, 10.55, 83.8, 86.05, 87.91, 92.27], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [205.0, 1.178341463414634, 1.776540254254894, 0.0, 0.0, 0.28, 1.83, 10.3], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [205.0, 55.278048780487815, 47.73954824631581, 0.0, 0.0, 88.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [205.0, 21.960975609756094, 0.4298187310472436, 20.0, 22.0, 22.0, 22.0, 23.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [205.0, 21.71219512195122, 1.5243441408619018, 2.0, 22.0, 22.0, 22.0, 23.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [205.0, 55.168975609756096, 9.327066633443568, 5.13, 46.1, 60.46, 63.07, 67.43]}, "\u623f\u5730\u4ea7\u5f00\u53d1\u4e0e\u7ba1\u7406": {"\u5e8f\u53f7": [87.0, 2799.0689655172414, 277.65763564201285, 2527.0, 2548.5, 2570.0, 3102.5, 3124.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [87.0, 82.5273563218391, 9.25965297202093, 33.89, 80.24000000000002, 84.89, 87.775, 93.29], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [87.0, 83.72413793103449, 8.785198248179924, 35.15, 81.66, 85.71, 88.565, 93.8], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [87.0, 2.3612643678160916, 2.8696810472625547, 0.0, 0.0, 1.55, 4.165, 14.15], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [87.0, 57.4712643678161, 49.725254236131384, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [87.0, 20.18390804597701, 3.942991237426592, 13.0, 17.0, 21.0, 24.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [87.0, 19.55172413793104, 3.978893794761551, 7.0, 16.0, 19.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [87.0, 54.71885057471263, 11.731062762903447, 18.64, 44.365, 61.74, 64.36500000000001, 68.74]}, "\u56fd\u9645\u4f1a\u8ba1(\u4e2d\u6fb3\u73ed)": {"\u5e8f\u53f7": [86.0, 11166.46511627907, 360.18363609412665, 10771.0, 10792.25, 11238.5, 11259.75, 11715.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [86.0, 84.2553488372093, 7.631926701102325, 34.2, 81.7375, 85.255, 88.79250000000002, 94.75], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [86.0, 85.13930232558141, 7.287481093216949, 35.91, 83.1325, 86.185, 89.36749999999998, 94.04], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [86.0, 1.636279069767442, 2.868413394815464, 0.0, 0.0, 0.0, 1.9875, 13.38], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [86.0, 49.84883720930232, 50.14227227819105, 0.0, 0.0, 49.5, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [86.0, 18.837209302325586, 6.743817151097875, 8.0, 12.0, 23.0, 24.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [86.0, 18.511627906976745, 6.785354793353302, 5.0, 12.0, 22.5, 24.0, 27.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [86.0, 54.308604651162774, 10.69344627911009, 18.81, 45.58750000000001, 53.38, 64.61250000000001, 70.1]}, "\u65b0\u95fb\u4f20\u64ad\u5b66\u7c7b": {"\u5e8f\u53f7": [209.0, 8298.775119617225, 110.70626481955809, 8140.0, 8192.0, 8352.0, 8404.0, 8456.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [209.0, 86.61540669856458, 6.859930123561552, 0.0, 85.31, 87.36, 89.52, 93.02], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [209.0, 87.03430622009571, 6.7543100642656295, 0.0, 85.71, 87.74, 89.7, 92.71], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [209.0, 1.9834928229665072, 2.867409335833845, 0.0, 0.0, 0.95, 2.65, 19.3], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [209.0, 71.61722488038279, 44.5085005920666, 0.0, 0.0, 99.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [209.0, 24.818181818181817, 1.4985424153587947, 17.0, 24.0, 24.0, 26.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [209.0, 24.650717703349287, 2.2569363087283256, 0.0, 24.0, 24.0, 26.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [209.0, 58.97641148325359, 9.192939391554292, 0.0, 48.05, 63.22, 64.71, 71.95]}, "\u73af\u5883\u5de5\u7a0b": {"\u5e8f\u53f7": [101.0, 13787.148514851488, 149.9589534598461, 13550.0, 13575.0, 13824.0, 13922.0, 13947.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [101.0, 81.38267326732672, 8.953383370669336, 35.13, 78.09, 83.86, 86.38, 92.83], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [101.0, 82.59306930693069, 8.253926307227884, 40.0, 80.64, 84.95, 87.25, 92.89], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [101.0, 1.4943564356435644, 2.7623958499250554, 0.0, 0.0, 0.12, 2.18, 18.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [101.0, 68.31683168316832, 46.75616123957767, 0.0, 0.0, 100.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [101.0, 22.93069306930693, 4.4390481541487565, 3.0, 21.0, 22.0, 27.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [101.0, 22.18811881188119, 4.646962171757219, 1.0, 20.0, 22.0, 26.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [101.0, 55.456633663366354, 10.617809687240367, 19.32, 46.9, 60.16, 63.16, 68.1]}, "\u7ecf\u6d4e\u7edf\u8ba1\u5b66": {"\u5e8f\u53f7": [160.0, 12854.275, 200.09727037134442, 12585.0, 12624.75, 12910.5, 13081.25, 13121.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [160.0, 82.31212500000002, 9.855352368065901, 30.69, 79.43, 84.655, 88.98, 94.49], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [160.0, 83.53087500000002, 9.251463415600188, 30.9, 81.57, 85.42, 89.3475, 93.91], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [160.0, 1.0603125, 2.036915111674959, 0.0, 0.0, 0.1, 1.5, 13.32], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [160.0, 64.825, 43.417897651521386, 0.0, 0.0, 91.0, 94.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [160.0, 21.23125, 4.459773910562434, 3.0, 18.0, 21.0, 25.0, 28.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [160.0, 20.43125, 4.810394765374474, 3.0, 17.0, 21.0, 25.0, 28.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [160.0, 55.3138125, 10.868521557467039, 16.88, 45.19500000000001, 59.695, 63.4125, 68.34]}, "\u7ecf\u6d4e\u4e0e\u8d38\u6613\u7c7b": {"\u5e8f\u53f7": [156.0, 10271.5, 45.17742799230607, 10194.0, 10232.75, 10271.5, 10310.25, 10349.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [156.0, 82.81589743589744, 7.758734006457568, 34.2, 80.57249999999998, 84.13499999999998, 87.33500000000002, 92.64], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [156.0, 84.13089743589744, 7.051551499085251, 38.37, 82.835, 85.69, 87.95, 92.19], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [156.0, 0.5332692307692307, 0.9519068560163951, 0.0, 0.0, 0.0, 0.7625, 6.32], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [156.0, 48.94230769230769, 49.7393516417029, 0.0, 0.0, 0.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [156.0, 20.58333333333333, 0.9432841280529208, 16.0, 20.0, 21.0, 21.0, 22.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [156.0, 20.0448717948718, 1.8917237359442372, 8.0, 20.0, 20.0, 21.0, 22.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [156.0, 53.050192307692306, 10.448501634894454, 18.81, 44.5075, 48.83, 63.225, 65.93]}, "\u57ce\u5e02\u7ba1\u7406": {"\u5e8f\u53f7": [89.0, 12089.561797752807, 118.11261527728716, 11950.0, 11972.0, 12183.0, 12205.0, 12227.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [89.0, 81.53966292134831, 12.997306228725574, 8.69, 79.69, 84.68, 88.24, 92.42], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [89.0, 82.5534831460674, 12.620967952102887, 8.88, 80.76, 85.88, 88.39, 92.04], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [89.0, 2.4208988764044945, 2.9439447254450952, 0.0, 0.0, 1.45, 3.82, 14.75], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [89.0, 59.24719101123596, 47.97401780198707, 0.0, 0.0, 97.0, 98.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [89.0, 20.68539325842697, 3.6636900971126516, 10.0, 17.0, 22.0, 24.0, 26.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [89.0, 19.662921348314608, 4.502382753570903, 0.0, 17.0, 19.0, 24.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [89.0, 54.460449438202254, 13.11193002142015, 4.78, 44.32, 61.47, 64.28, 68.53]}, "\u52b3\u52a8\u5173\u7cfb": {"\u5e8f\u53f7": [123.0, 12132.39837398374, 130.36510771218582, 11916.0, 11946.5, 12168.0, 12243.5, 12274.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [123.0, 81.98268292682926, 13.119248408673286, 2.14, 80.6, 85.17, 88.50999999999998, 92.53], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [123.0, 83.23113821138209, 12.779454836062865, 2.5, 83.54, 86.1, 89.11, 93.23], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [123.0, 1.4424390243902443, 2.0844444719150954, 0.0, 0.0, 0.45, 2.29, 12.8], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [123.0, 62.707317073170735, 47.05450827816905, 0.0, 0.0, 95.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [123.0, 21.130081300813007, 3.1230485043542178, 2.0, 20.0, 21.0, 23.0, 27.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [123.0, 20.16260162601626, 3.947138377709125, 0.0, 19.5, 20.0, 23.0, 26.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [123.0, 54.9291056910569, 12.200503416658073, 1.18, 46.99, 60.59, 63.44, 69.07]}, "\u5de5\u5546\u7ba1\u7406": {"\u5e8f\u53f7": [219.0, 9033.616438356165, 320.82864171270586, 8687.0, 8741.5, 8796.0, 9381.5, 9436.0], "\u52a0\u6743\u5e73\u5747\u6210\u7ee9": [219.0, 82.8993607305936, 11.913837092572615, 0.0, 80.985, 85.72, 88.89500000000002, 95.78], "\u7b97\u672f\u5e73\u5747\u6210\u7ee9": [219.0, 83.97630136986301, 11.88653059777658, 0.0, 82.33, 86.64, 89.205, 96.06], "\u80fd\u529b\u8bc4\u4ef7\u603b\u5206": [219.0, 2.0241552511415524, 2.5417982137205057, 0.0, 0.335, 1.25, 2.765, 18.75], "\u57fa\u672c\u7d20\u8d28\u603b\u5206": [219.0, 85.5296803652968, 33.5292941258277, 0.0, 96.0, 99.0, 100.0, 100.0], "\u5fc5\u4fee\u8bfe\u7a0b\u95e8\u6570": [219.0, 20.310502283105023, 5.3281689733847335, 1.0, 15.0, 20.0, 25.0, 29.0], "\u5fc5\u4fee\u8bfe\u7a0b\u53ca\u683c\u95e8\u6570": [219.0, 19.67579908675799, 5.5603369869990775, 0.0, 15.0, 19.0, 25.0, 29.0], "\u7efc\u5408\u8bc4\u4ef7\u603b\u5206": [219.0, 59.03132420091325, 10.221814125597511, 0.0, 58.42, 62.14, 64.24000000000001, 70.64]}};
+        let option=threeD(data,name);
+        return option;
+       /* $.ajax({
+            type:"get",// get或者post
+            url:"http://10.169.80.251:8000/score/total?group_by=major&rank=5",// 请求的url地址
+            data:{},//请求的参数
+            dataType:"json",//json写了jq会帮我们转换成数组或者对象 他已经用JSON.parse弄好了
+            timeout:3000,//3秒后提示错误
+            beforeSend:function(){
+                // 发送之前就会进入这个函数
+                // return false 这个ajax就停止了不会发 如果没有return false 就会继续
+            },
+            success:function(data){ // 成功拿到结果放到这个函数 data就是拿到的结果
+                console.log(data);
+                threedGrade(data);
+            },
+            error:function(){//失败的函数
+            },
+            complete:function(){//不管成功还是失败 都会进这个函数
+            }
+        })*/
+    }
+
+    let mainShow=function () {
+        let barOption=barOption();
+        console.log('mainshow')
+        console.log(myChartMain);
+        //myChartMain.setOption(barOption);//重新设置主图的option
+    }
+
+    /*let stopRotation=setInterval((option)=>{
+        document.getElementById("sub1").innerHTML='各班成绩一览';//子标题变换
+        let replace='<div style="color: white;font-size: 25px;margin-top: 15px;margin-left: 13%;">加权达90共计：' +
+            '<span style="color: yellow;font-size: 30px">1200</span> 名学生</div>';
+        replace+='';
+        document.getElementById("bigWord").innerHTML='';//大字隐藏
+        ability('threeD');
+        getGrade('hide');
+
+        clearInterval(this);
+    },1000);
+    let test = function(option){
+        setInterval(()=>{
+            console.log(option);
+            //option.grid3D.viewControl.autoRotate=false;
+            //let chart = localStorage.getItem("chart")
+            //console.log(myChartThree);
+            //myChartThree.setOption(option);
+            clearInterval(this);
+            //再设置setOption
+        },10000)
+    }*/
+
+</script>
+<script type="text/javascript">
+    (function ($) {
+        /*jQuery对象添加  runNum  方法*/
+        $.fn.extend({
+            runNum:function (val,params) {
+                /*初始化动画参数*/
+                var valString = val || '70225800'
+                var point = valString.toString(10).split('.')[1]?valString.toString(10).split('.')[1].length:0//小数小位数
+                var unit = '1';
+                for(var i = 0 ; i <point ; i++){
+                    unit+='0'
+                }
+                var hex =  parseInt(unit)
+                var par= params || {};
+                var runNumJson={
+                    el:$(this),//元素
+                    value:valString,//数字
+                    totalCount:valString*hex,
+                    width:par.width || 40,//每一个的宽度
+                    height:par.height || 50,//每一个的高度
+                    interval:par.interval || 500,//定时刷新80最小值
+                    speed:par.speed || 3000,//速度30最小值
+                    length:(valString*hex).toString(10).length//数字的长度
+                };
+                // 处理小数显示
+                $._runNum._list(runNumJson.el,runNumJson,point);
+                $._runNum._interval(runNumJson.el.children("li"),runNumJson);
+            }
+        });
+
+
+        /*jQuery对象添加  _runNum  属性*/
+        $._runNum={
+            /*初始化数字列表
+            el:元素
+            json:配置对象
+            */
+            _list:function (el,json,point) {
+                // debugger;
+                var str='';
+                // 对每一位进行遍历
+                for(var i=0; i<json.length;i++){
+                    var w
+                    if((json.length - point)<=i){
+                        w  =json.width*i+json.width/3;//当前数字的left
+                    }else{
+                        w =json.width*i;//当前数字的left
+                    }
+                    var t=0;//当前数字的top
+                    var h=json.height*10;//每一个数字的组高度
+                    str +='<li cur = "0" style="width:'+json.width+'px;left:'+w+'px;top: '+-t+'px;height:'+h+'px;">';
+                    for(var j=0;j<10;j++){
+                        str+='<div style="height:'+json.height+'px;line-height:'+json.height+'px;">'+j+'</div>';
+                    }
+                    str+='<div style="height:'+json.height+'px;line-height:'+json.height+'px;">'+0+'</div>';
+                    str+='</li>';
+                    // debugger;
+                    if(i==(json.length - point -1)&&point!=0){
+                        $('.pointstyl').css({display:'block',width:json.width/3+'px',left:(w+json.width)+'px',top:0,height:h+'px'});
+                        // str+='<div class="pointstyl" style="width:'+json.width/3+'px;left:'+(w+json.width)+'px;top: '+-t+'px;height:'+h+'px;">.</div>';
+                    }else if(point==0){
+                        $('.pointstyl').css('display','none')
+                    }
+                }
+                el.html(str);
+            },
+            /*执行动画效果*/
+            _animate:function (el,json) {
+                // debugger;
+                // 计算出每次移动的距离
+                var topPx=json.height;
+                //  当前的数值
+                var temptop = parseInt(el.attr('cur'))+1
+                el.attr('cur',temptop)
+                //  对最后一位进行移动;判断是否移动到10了。
+                el.animate({top:-topPx*temptop+'px'},json.interval/10,'linear',function(){
+                    $._runNum._interval(json.el.children("li"),json);
+                });
+                //如果移动整10，则移动到0处；它的上一位移动一下
+                if(temptop==10){
+                    el.attr('cur','0')
+                    //移动到顶部
+                    el.animate({top:0},0,"linear")
+                    //前一位滚动一下
+                    if(el.prev()){
+                        $._runNum._animate(el.prev('li'),json)
+                    }
+                }
+
+            },
+            /*刷新列表*/
+            _interval:function (el,json) {
+                // 动画执行完成，清除计数器
+                if(json.totalCount<=0){
+                    //执行动画
+                }else {
+                    $._runNum._animate(el.last(),json);
+                    json.totalCount--;
+
+                }
+            }
+        }
+    })(jQuery);
+</script>
+<script type="text/javascript">
+    $("#quan").runNum(2212);
+    $("#guo").runNum(1024);
+</script>
+
+</body>
+</html>

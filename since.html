@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>科研创新</title>
+    <script type="text/javascript" src="jsbag/jquery.js" charset="utf-8"></script>
+    <script type="text/javascript" src="jsbag/vue.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/echarts.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/echarts-gl.js" charset="utf-8"></script>
+    <script src="js/api.js" type="module" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/jquery.ba-resize.js"></script>
+    <script type="text/javascript" src="./jsbag/echarts-wordcloud.min.js"></script>
+    <script src="js/grade.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" src="./jsbag/china.js" charset="utf-8"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <style>
+        div{
+            /*border:0.5px solid #cfb223;*/
+            margin: 0 0;
+        }
+        #container{
+            height: 97vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        #content div{
+            /*background-color: rgba(255,255,0,0.1);*/
+        }
+        #parent{
+            height: 100%;
+            width: 100%;
+        }
+        #title{
+            height: 10%;
+            width: 100%;
+        }
+        #content{
+            height: 90%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        .zuo{
+            width: 30%;
+            height: 29%;
+            margin-top: 1%;
+        }
+        .zhong{
+            width: 40%;
+            height: 95%;
+        }
+        .you{
+            width: 30%;
+            height: 29%;
+            margin-top: 1%;
+        }
+    </style>
+</head>
+<body style="background-color: black">
+    <div id="container">
+        <img src="img/golden_back.jpg" style="z-index:-1;width: 100%;height: 100%;position: absolute;background-size: contain"/>
+        <div id="parent">
+            <div id="title" style="color: white;text-align: center;font-size: 28px;padding-top: 1%">
+                科研创新之星
+            </div>
+            <div id="content">
+                <div class="zuo"></div>
+                <div class="zuo"></div>
+                <div class="zuo"></div>
+                <div class="zhong" id="main">
+                    <script>
+
+                    </script>
+                </div>
+                <div class="you"></div>
+                <div class="you"></div>
+                <div class="you"></div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

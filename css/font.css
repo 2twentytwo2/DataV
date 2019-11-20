@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'nameFont';
+    src: url('../font/造字工房尚雅准宋 G0v1 常规体.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'textFont';
+    src: url('../font/方正清刻本悦宋简体.ttf') format('truetype');
+}
+
+.gradeName
+{
+    font-family: nameFont;
+    width: 15%;
+}
+.gradeColledge{
+    font-family: textFont;
+}
+.grade_description{
+    font-family: textFont;
+}
+.subTitle{
+    font-family: textFont;
+}
