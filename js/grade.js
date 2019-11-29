@@ -16,25 +16,17 @@ var myOption;
  * @param data
  * @returns {*}
  */
-var simpleBar=function (name,data) {
+var simpleBar=function (name) {
      myChart=echarts.init(document.getElementById(name));
-    var option=simpleBarOption(data);
+    var option=simpleBarOption();
     myChart.setOption(option);
     console.log(myChart);
     return myChart
 }
-var simpleBarOption=function (data) {
+var simpleBarOption=function () {
     const curInt = 2;
     var option = {
         color: ['#f0f01c'],
-        title : {
-            text: '学霸的假期',
-            x: 'center',
-            textStyle:{
-                color:'#fff'
-            },
-            top:20
-        },
         tooltip : {
             trigger: 'axis',
             axisPointer : {            // 坐标轴指示器，坐标轴触发有效
@@ -114,132 +106,11 @@ var simpleBarOption=function (data) {
  return option;
 }
 
-var ciyun=function (name) {
-     myChart=echarts.init(document.getElementById(name));
-    var option=ciyunOption();
-    myChart.setOption(option);
-}
-var ciyunOption=function () {
-    var option = {
-        title: {
-            text: '最爱通识课',
-            x: 'center',
-            textStyle: {
-                fontSize: 20,
-                bottom:20,
-                color: 'rgba(255,255,255)'
-            }
-
-        },
-        tooltip: {
-            show: true
-        },
-        series: [{
-            name: '热点分析',
-            type: 'wordCloud',
-            // size: ['9%', '99%'],
-            sizeRange: [6, 36],//最小文字——最大文字
-            // textRotation: [0, 45, 90, -45],
-            // rotationRange: [-45, 90],//旋转角度区间
-            // rotationStep: 90,//旋转角度间隔
-            // shape: 'circle',
-            // gridSize: 10,//字符间距
-            textPadding: 0,
-            autoSize: {
-                enable: true,
-                minSize: 6
-            },
-            textStyle: {
-                normal: {
-                    color: function() {
-                        return 'rgb(' + [
-                            Math.round(Math.random() * 105)+150,
-                            Math.round(Math.random() * 105)+150,
-                            Math.round(Math.random() * 105)+150
-                        ].join(',') + ')';
-                    }
-                },
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowColor: '#333'
-                }
-            }
-        }]
-    };
-
-    var JosnList = [{
-        name: "生活资源",
-        value: "999"
-    }, {
-        name: "供热管理",
-        value: "888"
-    }, {
-        name: "供气质量",
-        value: "777"
-    }, {
-        name: "生活用水管理",
-        value: "688"
-    }, {
-        name: "一次供水问题",
-        value: "588"
-    }, {
-        name: "交通运输",
-        value: "516"
-    }, {
-        name: "城市交通",
-        value: "515"
-    }, {
-        name: "环境保护",
-        value: "483"
-    }, {
-        name: "房地产管理",
-        value: "462"
-    }, {
-        name: "城乡建设",
-        value: "449"
-    }, {
-        name: "社会保障与福利",
-        value: "429"
-    }, {
-        name: "社会保障",
-        value: "407"
-    }, {
-        name: "文体与教育管理",
-        value: "406"
-    }, {
-        name: "公共安全",
-        value: "406"
-    }, {
-        name: "公交运输管理",
-        value: "386"
-    }, {
-        name: "出租车运营管理",
-        value: "385"
-    }, {
-        name: "供热管理",
-        value: "375"
-    }, {
-        name: "市容环卫",
-        value: "355"
-    }, {
-        name: "自然资源管理",
-        value: "355"
-    }, {
-        name: "粉尘污染",
-        value: "335"
-    }, {
-        name: "噪声污染",
-        value: "324"
-    }];
-
-    option.series[0].data = JosnList;
-    return option;
-}
-
+let shandianChart;
 let shandian=function (name) {
-    let mychart=echarts.init(document.getElementById(name));
+    shandianChart=echarts.init(document.getElementById(name));
     let option=shandianOption();
-    mychart.setOption(option);
+    shandianChart.setOption(option);
 }
 let shandianOption=function () {
     var plantCap = [{
@@ -257,28 +128,29 @@ let shandianOption=function () {
     }, {
         name: '其他',
         value: '2.42'
-    }];
+    }
+    ];
 
     var datalist = [{
         offset: [56, 58],
         symbolSize: 55,
         opacity: .95,
-        color: 'rgba(0,204,188, 1)'
+        color: '#CF77FF'
     },  {
         offset: [70, 13],
         symbolSize: 40,
         opacity: .84,
-        color: 'rgba(0,204,188, 0.95)'
+        color: '#FA7729'
     }, {
         offset: [3, 76],
         symbolSize: 38,
         opacity: .8,
-        color: 'rgba(0,204,188,0.95)'
+        color: '#FFC526'
     }, {
         offset: [15, 25],
         symbolSize: 52,
         opacity: .75,
-        color: 'rgba(0,204,188,1)'
+        color: '#7cb1f8'
     }, {
         offset: [98, 70],
         symbolSize: 30,
@@ -297,7 +169,7 @@ let shandianOption=function () {
                 normal: {
                     textStyle: {
                         fontSize: 10,
-                        color:'#fff'
+                        color:'#ffffff'
                     }
                 }
             },
@@ -309,7 +181,7 @@ let shandianOption=function () {
             },
         })
     }
-    option = {
+    let option = {
         grid: {
             show: false,
             top: 10,
@@ -340,7 +212,7 @@ let shandianOption=function () {
                 normal: {
                     show: true,
                     formatter: '{b}',
-                    color: '#fff',
+                    color: '#000',
                     textStyle: {
                         fontSize: '8'
                     }
@@ -351,8 +223,8 @@ let shandianOption=function () {
                     borderWidth: '4',
                     borderType: 'solid',
                     borderColor: '#fff',
-                    color: '#68b837',
-                    shadowColor: '#009ACD',
+                    color: '#fff',
+                    shadowColor: '#fff',
                     shadowBlur: 10
                 }
             },
@@ -361,7 +233,134 @@ let shandianOption=function () {
     };
     return option;
 }
+//网址 https://gallery.echartsjs.com/editor.html?c=xPQyAxdcyG
+let bigshandianOption=function () {
+    var plantCap = [
+        {
+        name: '教学楼',
+        value: '86.00'
+    }, {
+        name: '图书馆',
+        value: '53.62'
+    }, {
+        name: '宿舍',
+        value: '54.11'
+    }, {
+        name: '休闲场所',
+        value: '10.63'
+    }, {
+        name: '其他',
+        value: '2.42'
+    }
+    ];
 
+    var datalist = [
+        {
+        offset: [56, 70],
+        symbolSize: 154,
+        opacity: .95,
+            color: '#CF77FF'
+    },  {
+        offset: [8, 43],
+        symbolSize: 115,
+        opacity: .84,
+            color: '#FA7729'
+    }, {
+        offset: [93, 35],
+        symbolSize: 113,
+        opacity: .8,
+            color: '#FFC526'
+    }, {
+        offset: [36, 30],
+        symbolSize: 95,
+        opacity: .75,
+            color: '#7cb1f8'
+    }, {
+        offset: [74, 20],
+        symbolSize: 92,
+        opacity: .7,
+        color:'rgba(0,204,188, 0.90)'
+    }];
+    var datas = [];
+    for (var i = 0; i < plantCap.length; i++) {
+        var item = plantCap[i];
+        var itemToStyle = datalist[i];
+        datas.push({
+            name: item.value + '\n' + item.name,
+            value: itemToStyle.offset,
+            symbolSize: itemToStyle.symbolSize,
+            label: {
+                normal: {
+                    textStyle: {
+                        fontSize: 16,
+                        color:'#fff'
+                    }
+                }
+            },
+            itemStyle: {
+                normal: {
+                    color: itemToStyle.color,
+                    opacity: itemToStyle.opacity,
+                    textStyle:{
+                        color:'#fff'
+                    }
+                }
+            },
+        })
+    }
+    let option = {
+        grid: {
+            show: false,
+            top: '15%',
+            bottom: '10%'
+        },
+        xAxis: [{
+            gridIndex: 0,
+            type: 'value',
+            show: false,
+            min: 0,
+            max: 100,
+            nameLocation: 'middle',
+            nameGap: 5
+        }],
+        yAxis: [{
+            gridIndex: 0,
+            min: 0,
+            show: false,
+            max: 100,
+            nameLocation: 'middle',
+            nameGap: 30
+        }],
+        series: [{
+            type: 'scatter',
+            symbol: 'circle',
+            symbolSize: 120,
+            label: {
+                normal: {
+                    show: true,
+                    formatter: '{b}',
+                    color: '#fff',
+                    textStyle: {
+                        fontSize: '20',
+                        color:'#fff'
+                    }
+                },
+            },
+            itemStyle: {
+                normal: {
+                    borderWidth: '4',
+                    borderType: 'solid',
+                    borderColor: '#fff',
+                    color: '#fff',
+                    shadowColor: '#fff',
+                    shadowBlur: 10
+                }
+            },
+            data: datas
+        }]
+    };
+    return option;
+}
 
 /***
  * 柱状图-折线图
@@ -781,13 +780,13 @@ let duibiBarOption=function(){
         grid: {
             left: '2%',
             right: '4%',
-            bottom: '14%',
+            bottom: '1%',
             top:'16%',
             containLabel: true
         },
         xAxis: {
             type: 'category',
-            data: ['专业课','选修课','通识课'],
+            data: ['必修课','选修课','通识课'],
             axisLine: {
                 lineStyle: {
                     color: 'white'
@@ -805,8 +804,8 @@ let duibiBarOption=function(){
         yAxis: {
             type: 'value',
             max:'95',
-            min:'85',
-            interval:2,
+            min:'90',
+            interval:1,
             axisLine: {
                 show: false,
                 lineStyle: {
@@ -839,7 +838,82 @@ let duibiBarOption=function(){
                     }
 
                 },
-                data: [99.3,89.2,95.8]
+                data: [90.91,91.41,94.33]
+            },]
+    };
+    return option;
+}
+
+let main_duibiBarOption=function(){
+    var option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        grid: {
+            left: '8%',
+            right: '8%',
+            bottom: '10%',
+            top:'16%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'category',
+            data: ['必修课','选修课','通识课'],
+            axisLine: {
+                lineStyle: {
+                    color: 'white'
+                }
+            },
+            axisLabel: {
+                // interval: 0,
+                // rotate: 40,
+                textStyle: {
+                    fontFamily: 'Microsoft YaHei'
+                }
+            },
+        },
+
+        yAxis: {
+            type: 'value',
+            max:'95',
+            min:'90',
+            interval:1,
+            axisLine: {
+                show: false,
+                lineStyle: {
+                    color: 'white'
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'rgba(255,255,255,0.3)'
+                }
+            },
+            axisLabel: {}
+        },
+        series: [
+            {
+                name: '优绩学子',
+                type: 'bar',
+                barWidth: '15%',
+                itemStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: '#8bd46e'
+                        }, {
+                            offset: 1,
+                            color: '#09bcb7'
+                        }]),
+                        barBorderRadius: 11,
+                    }
+
+                },
+                data: [90.91,91.41,94.33]
             },]
     };
     return option;
@@ -1149,24 +1223,22 @@ let bintu=function (name) {
     };
 }
 
-//3D图像显示
+
 /***
- * 三维 x轴 学院
- * z轴 成绩
- * y轴 各个成绩的指标；加权方差 能力方差 综合方差
+ * 地图图样
  */
 var myChartMain;//主图的chart
-let threeD=function (data,name) {
+let threeD=function (name) {
     // 基于准备好的dom，初始化echarts实例
     myChartMain = echarts.init(document.getElementById(name));
     myChartMain.showLoading();//chart的加载动画
     let option=threeDOption();//threeDOption3D(data);
+    //let option=bigshandianOption();
     window.onresize = myChartMain.resize;
     myChartMain.hideLoading();
     myChartMain.setOption(option);
-    console.log(myChartMain)
+   // console.log(myChartMain)
     return option;
-    return '';
 }
 let threeDOption=function(){
     var mapName = 'china'
@@ -1315,7 +1387,6 @@ let threeDOption=function(){
         var name = v.properties.name;
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
-
     });
 
     console.log(data)
@@ -1339,6 +1410,10 @@ let threeDOption=function(){
         return res;
     };
     let option = {
+        grid:{
+            bottom:'5%',
+            top:'5%'
+        },
         tooltip: {
             padding: 0,
             enterable: true,
@@ -1353,12 +1428,12 @@ let threeDOption=function(){
             min: 0,
             max: 0.3,
             left: '10%',
-            top: 'bottom',
+            top: '60%',
             bottom:-20,
             calculable: true,
             seriesIndex: [1],
             inRange: {
-                color: ['#60f3ab', '#00ccbc','#009ac0','#006faf','#014289'] // 蓝绿
+                color: ['#fff', '#60f3ab','#0cf9f3','#006faf','#014289'] // 蓝绿
             },
             itemWidth:10,
             itemHeight:60,
@@ -1397,7 +1472,9 @@ let threeDOption=function(){
                 normal: {
                     formatter: '{b}',
                     position: 'right',
-                    show: true
+                    show: false,
+                    fontFamily:'Microsoft YaHei',
+                    fontSize:8,
                 },
                 emphasis: {
                     show: true
@@ -1417,7 +1494,9 @@ let threeDOption=function(){
                 showLegendSymbol: false, // 存在legend时显示
                 label: {
                     normal: {
-                        show: true
+                        show: true,
+                        fontFamily:'Microsoft YaHei',
+                        fontSize:8,
                     },
                     emphasis: {
                         show: false,
@@ -1848,6 +1927,8 @@ let threeDOptionditu=function(){
                     normal: {
                         formatter: '{b}',
                         position: 'right',
+                        fontFamily:'Microsoft YaHei',
+                        fontSize:8,
                         show: true
                     },
                     emphasis: {
@@ -1880,6 +1961,8 @@ let threeDOptionditu=function(){
                     normal: {
                         formatter: '{b}',
                         position: 'left',
+                        fontFamily:'Microsoft YaHei',
+                        fontSize:4,
                         show: true
                     }
                 },
@@ -3410,7 +3493,7 @@ let threeDbarOption=function(){
 /**
  * 堆叠图
  * 小图之间的轮流变换
- */
+
 let duidie=function (name) {
     myChart=echarts.init(document.getElementById(name));
     let option=duidieOption();
@@ -3603,6 +3686,7 @@ let duidieOption2=function () {
     };
     return option;
 }
+ */
 /***
  * 两个div中的内容相互交换
  */
@@ -3782,8 +3866,9 @@ let nannvOption=function () {
     return option;
 }
 
+let leidaCharts;
 let leida=function (name) {
-    let leidaCharts=echarts.init(document.getElementById(name));
+    leidaCharts=echarts.init(document.getElementById(name));
     let option=leidaOption();
     leidaCharts.setOption(option);
 }
@@ -3944,10 +4029,11 @@ let funShow=function (name) {
     myChart.setOption(option);
 }
 
+let binChart;
 let manyBin=function (name) {
-    let mychart=echarts.init(document.getElementById(name));
+    binChart=echarts.init(document.getElementById(name));
     let option=manyBinOption();
-    mychart.setOption(option);
+    binChart.setOption(option);
 }
 let manyBinOption=function () {
     var dataStyle = {
@@ -4134,6 +4220,197 @@ let manyBinOption=function () {
             }]
         }]
     }
+    return option;
+}
+
+let bigmanyBinOption=function(){
+    var dataStyle = {
+        normal: {
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            },
+            shadowBlur: 0,
+            shadowColor: '#203665'
+        }
+    };
+    let option = {
+        grid:{
+          bottom:'-2%',
+        },
+        series: [{
+            name: '第一个圆环',
+            type: 'pie',
+            clockWise: false,
+            radius: [60, 70],//圆环的半径
+            itemStyle: dataStyle,
+            hoverAnimation: false,
+            center: ['20%', '70%'],
+            data: [{
+                value: 56.5,
+                label: {
+                    normal: {
+                        rich: {
+                            a: {
+                                // #009aco #00ccbc #60f3ab
+                                color: '#009acd',
+                                align: 'center',
+                                fontSize: 18,
+                                fontWeight: "bold"
+                            },
+                            b: {
+                                color: '#fff',
+                                align: 'center',
+                                fontSize: 16
+                            }
+                        },
+                        formatter: function(params){
+                            return "{b|起床时间}\n\n"+"{a|7:00-8:00}"+"\n\n{b|56.5%}";
+                        },
+                        position: 'center',
+                        show: true,
+                        textStyle: {
+                            fontSize: '18',
+                            fontWeight: 'normal',
+                            color: '#fff'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#00ccbc',
+                        shadowColor: '#2c6cc4',
+                        shadowBlur: 0
+                    }
+                }
+            }, {
+                value: 43.5,
+                name: 'invisible',
+                itemStyle: {
+                    normal: {
+                        color: '#24375c'
+                    },
+                    emphasis: {
+                        color: '#24375c'
+                    }
+                }
+            }]
+        }, {
+            name: '第二个圆环',
+            type: 'pie',
+            clockWise: false,
+            radius: [70, 80],
+            itemStyle: dataStyle,
+            hoverAnimation: false,
+            center: ['50%', '35%'],
+            data: [{
+                value: 48.31,
+                label: {
+                    normal: {
+                        rich: {
+                            a: {
+                                color: '#d3f5ce',//字体颜色
+                                align: 'center',
+                                fontSize: 20,
+                                fontWeight: "bold"
+                            },
+                            b: {
+                                color: '#fff',
+                                align: 'center',
+                                fontSize: 18
+                            }
+                        },
+                        formatter: function(params){
+                            return "{b|自习时间}\n\n"+"{a|0-3h}"+"\n\n{b|48.31%}";
+                        },
+                        position: 'center',
+                        show: true,
+                        textStyle: {
+                            fontSize: '18',
+                            fontWeight: 'normal',
+                            color: '#fff'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#60f3ab',//圆环强调的颜色
+                        shadowColor: '#ef45ac',
+                        shadowBlur: 0
+                    }
+                }
+            }, {
+                value: 51.69,
+                name: 'invisible',
+                itemStyle: {
+                    normal: {
+                        color: '#412a4e'
+                    },
+                    emphasis: {
+                        color: '#412a4e'
+                    }
+                }
+            }]
+        }, {
+            name: '第三个圆环',
+            type: 'pie',
+            clockWise: false,
+            radius: [60, 70],
+            itemStyle: dataStyle,
+            hoverAnimation: false,
+            center: ['80%', '70%'],
+            data: [{
+                value: 51,
+                label: {
+                    normal: {
+                        rich: {
+                            a: {
+                                color: '#009acd',//字体颜色
+                                align: 'center',
+                                fontSize: 16,
+                                fontWeight: "bold"
+                            },
+                            b: {
+                                color: '#fff',
+                                align: 'center',
+                                fontSize: 18
+                            }
+                        },
+                        formatter: function(params){
+                            return "{b|中午}\n\n"+"{a|有午休习惯}"+"\n\n{b|51.00%}";
+                        },
+                        position: 'center',
+                        show: true,
+                        textStyle: {
+                            fontSize: '18',
+                            fontWeight: 'normal',
+                            color: '#fff'
+                        }
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        color: '#00ccbc',
+                        shadowColor: '#613fd1',
+                        shadowBlur: 0
+                    }
+                }
+            }, {
+                value: 49,
+                name: 'invisible',
+                itemStyle: {
+                    normal: {
+                        color: '#453284'
+                    },
+                    emphasis: {
+                        color: '#453284'
+                    }
+                }
+            }]
+        }]
+    };
     return option;
 }
 
@@ -4331,26 +4608,32 @@ let nianjiOption=function () {
     };
     return option;
 }
-
+/***
+ * 父母学历
+ */
+let fumuChart;
 let fumu=function(name){
-    let myChart=echarts.init(document.getElementById(name));
+    fumuChart=echarts.init(document.getElementById(name));
     let option=fumuOption();
-    myChart.setOption(option);
+    fumuChart.setOption(option);
 }
-
 let fumuOption=function(){
     var value = [29.51,6.56,0.55,63.9];
 
-    option = {
+    let option = {
         tooltip: {
             trigger: 'item'
+        },
+        grid:{
+            bottom:'40%',
+            top:'40%'
         },
         dataRange: {
             show: false,
             min : 0,
             max : 12,
             calculable : true,
-            color: ['#2c6cc4','#50a3ba','#00ccbc','#60f3ab'],
+            color: ['#00ccbc','#50a3ba','#0783f0','#60f3ab'],
             y:'center',
         },
         xAxis: [
@@ -4438,10 +4721,115 @@ let fumuOption=function(){
     return option;
 }
 
+let bigfumuOption=function(){
+    var value = [29.51,6.56,0.55,63.9];
+
+    let option = {
+        grid:{
+            bottom:'10%',
+            top:'10%',
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        dataRange: {
+            show: false,
+            min : 0,
+            max : 12,
+            calculable : true,
+            color:['#00ccbc','#50a3ba','#0783f0','#60f3ab'],
+            y:'center',
+        },
+        xAxis: [
+            {
+                type: 'category',
+                show: false,
+                data: ['本科','硕士','博士','其他']
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        series: [
+            {
+                type: 'bar',
+                itemStyle: {
+                    normal: {
+                        opacity:0.6,
+                        shadowBlur: 80,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                },
+                silent: true,
+                barWidth: 50,
+                barGap: '-100%', // Make series be overlap
+                data: [29.51,6.56,0.55,63.9]
+            },
+            {
+                name: '学霸父母学历',
+                type: 'pictorialBar',
+                symbolSize: [50, 35],
+                symbolOffset: [0, -20],
+                z: 12,
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            // build a color map as your need.
+                            var colorList = [
+                                '#50a3ba','#50a3ba','#50a3ba','#50a3ba','#50a3ba'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                        label: {
+                            opacity:1,
+                            color: '#fff',
+                            show: true,
+                            position: 'top',
+                            formatter: '{b}\n{c}%'
+                        }
+                    }
+                },
+                data: [
+                    {
+                        value: 29.51,
+                        symbolPosition: 'end'
+                    }, {
+                        value: 6.56,
+                        symbolPosition: 'end'
+                    }, {
+                        value: 0.55,
+                        symbolPosition: 'end'
+                    },{
+                        value: 63.9,
+                        symbolPosition: 'end'
+                    }]
+            },
+            {
+                name: '学历',
+                type: 'pictorialBar',
+                symbolSize: [50, 35],
+                symbolOffset: [0, 20],
+                z: 12,
+                itemStyle: {
+                    normal: {
+                        opacity:0.8
+                    }
+                },
+                data: [29.51,6.56,0.55,63.9]
+            },
+        ]
+    };
+    return option;
+}
+
+let paimingChart;
 let gradePaiming=function (name) {
-    let mychart=echarts.init(document.getElementById(name));
+    paimingChart=echarts.init(document.getElementById(name));
     let option=gradeOption();
-    mychart.setOption(option);
+    paimingChart.setOption(option);
 }
 let gradeOption=function (){
     var yData = ['四川省', '江苏省', '福建省', '山东省', '浙江省']

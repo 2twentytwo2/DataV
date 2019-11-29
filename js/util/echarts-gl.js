@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("echarts"));
+		module.exports = factory(require("js/util/echarts"));
 	else if(typeof define === 'function' && define.amd)
-		define(["echarts"], factory);
+		define(["js/util/echarts"], factory);
 	else if(typeof exports === 'object')
-		exports["echarts-gl"] = factory(require("echarts"));
+		exports["echarts-gl"] = factory(require("js/util/echarts"));
 	else
 		root["echarts-gl"] = factory(root["echarts"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_0__) {

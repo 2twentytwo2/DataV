@@ -1,5 +1,5 @@
 import Vue from './vue'
-import axios from 'axios'
+import axios from 'js/util/axios'
 import qs from 'qs'
 
 

@@ -1,0 +1,185 @@
+.main_subTitle{
+    color: yellow;
+    font-size: 16px;
+    height: 10%;
+    margin-top: 1%;
+    width: 90%;
+}
+.topic_style{
+    margin-left: 8%;
+    width: 100%;
+    height: 22%;
+    font-size: 16px;
+    display: flex;
+}
+ div{
+     border-radius: 10px;
+ }
+.container{
+    width: 100%;
+    height: 98vh;
+    margin: 0 0;
+}
+.parent{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    border: #13E8E9 1px solid;
+}
+.head{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: white;
+    width: 100%;
+    height: 17%;
+}
+
+.content{
+    margin-top: 2%;
+    z-index: 3;
+    width: 100%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.content div{
+    /*border: 1px #6F2EB2 solid;
+    background-color: rgba(111,46,178,0.3);*/
+}
+.title{
+    width: 20%;
+    height: 95%;
+    margin-left: 2%;
+    margin-top: 2%;
+    font-size: 32px;
+    font-weight: bold;
+}
+.bigword{
+    width: 65%;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    color: white;
+}
+.bigword div{
+    /* background-color: rgba(111,46,178,0.3);
+   box-shadow: #6f2eb2;*/
+}
+.bigword .normal{
+    margin-top: 2%;
+    color: white;
+    opacity: 0.9;
+    font-size: 16px;
+    text-align: center;
+}
+.bigword .highlight{
+    padding-left: 64px;
+    color: #9c9cff;
+    font-size: 32px;
+    background-color: rgba(111,46,178,0.3);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.left_title{
+    width: 100%;
+    height: 11%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 2%;
+    display: flex;
+    flex-direction: row;
+
+}
+.main_title{
+    width: 100%;
+    height: 8%;
+    margin-bottom: 1%;
+    margin-top: 1%;
+    margin-left: 1%;
+    display: flex;
+    flex-direction: row;
+}
+.bottom_title{
+    width: 100%;
+    height: 29%;
+    margin-left: 1%;
+    display: flex;
+    flex-direction: row;
+}
+#main{
+    width: 65%;
+    height: 100%;
+    margin: 0% 1% 0%;
+}
+#bottom{
+    width: 65%;
+    height: 22%;
+    margin-left: 1%;
+}
+#left{
+    width: 25%;
+    height: 100%;
+}
+.back{
+    background-color: rgba(111,46,178,0.3);
+    border-width:10px 0px 0px 0px;
+    border-color: rgba(188,137,241,0.3);
+    border-style: solid;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#right{
+    width: 21%;
+    height: 100%;
+}
+
+<!--排名所用的样式-->
+ul{
+    list-style: none;
+}
+li{
+    list-style:none;
+    position: relative;
+    padding-left: 30px;
+    height: 36px;
+    line-height: 36px;
+}
+li:after{
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 5px;
+    line-height: 18px;
+    text-align: center;
+    color: #FFF;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+li:first-child:after {content: "1";background: #FD8C84;}
+li:nth-child(2):after {content: "2";background: #FFC526;}
+li:nth-child(3):after {content: "3";background: #FA7729;}
+li:nth-child(4):after {content: "4";background: #CF77FF;}
+li:nth-child(5):after {content: "5";background: #f4aeff;}
+
+
+
+.rank{
+    font-size: 14px;
+    width: 100%;
+    height: 80%;
+    margin-top: -9%;
+    margin-left: -10%;
+    color: white;
+}

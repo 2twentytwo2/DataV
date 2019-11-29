@@ -7,17 +7,7 @@
     src: url('../font/方正清刻本悦宋简体.ttf') format('truetype');
 }
 
-.gradeName
-{
-    font-family: nameFont;
-    width: 15%;
-}
-.gradeColledge{
-    font-family: textFont;
-}
-.grade_description{
-    font-family: textFont;
-}
-.subTitle{
-    font-family: textFont;
+@font-face {
+    font-family: 'numberFont';
+    src: url('../font/7daysfatoblique.ttf') format('truetype');
 }
