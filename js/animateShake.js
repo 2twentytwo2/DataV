@@ -80,6 +80,7 @@ let mainIterval=function () {
     let main_sub1_content=$('#main_sub1_content');
     let main_sub2=$("#main_sub2"),main_sub2_content=$("#main_sub2_content");
     let main_sub3=$("#main_sub3"),paming_content=$('#paming_content');
+    let sub4_content=$('#sub4_content'),main_sub4=$('#main_sub4'),word=$("#word");
 
     let option='';
     let str='div1Content_';
@@ -102,7 +103,8 @@ let mainIterval=function () {
             main_sub1_content.html('<h2>2212</h2>');
             main_sub2.text('国奖加持的优绩共');
             main_sub2_content.html('<h2>174</h2>');
-            $('#paiming').attr('style','display:none')
+            $('#paiming').attr('style','display:flex');
+            word.attr('style','display:none');
             option=threeDOption();
         }
         if (maintime==1){
@@ -113,9 +115,10 @@ let mainIterval=function () {
             main_sub1_content.html('<h2>90.91</h2>');
             main_sub2.text('限选课平均成绩');
             main_sub2_content.html('<h2>91.41</h2>');
-            main_sub3.text('通识课课平均成绩');
-            paming_content.attr('class','fanpaiqi');
-            paming_content.html('<h2 style="color: white;margin-left: 14%;margin-top: 1%">94.33</h2>');
+            main_sub4.text('通识课课平均成绩');
+            sub4_content.text('94.33');
+            word.attr('style','display:block');
+            $('#paiming').attr('style','display:none');
             option=main_duibiBarOption();
         }
         if (maintime==2){
@@ -126,9 +129,8 @@ let mainIterval=function () {
             main_sub1_content.html('<h2>86.00%</h2>');
             main_sub2.text('宿舍');
             main_sub2_content.html('<h2>54.11%</h2>');
-            main_sub3.text('图书馆');
-            paming_content.attr('class','fanpaiqi');
-            paming_content.html('<h2 style="color: white;margin-left: 14%;margin-top: 1%">53.62%</h2>');
+            main_sub4.text('图书馆');
+            sub4_content.text('94.33');
             option=bigshandianOption();
         }
         if (maintime==3){
@@ -139,9 +141,8 @@ let mainIterval=function () {
             main_sub1_content.html('<h2>56.50%</h2>');
             main_sub2.text('自习0-3h');
             main_sub2_content.html('<h2>48.31%</h2>');
-            main_sub3.text('中午午休');
-            paming_content.attr('class','fanpaiqi');
-            paming_content.html('<h2 style="color: white;margin-left: 14%;margin-top: 1%">51.00%</h2>');
+            main_sub4.text('中午午休');
+            sub4_content.text('51.00%');
             option=bigmanyBinOption();
         }
         if (maintime==4){
@@ -152,9 +153,8 @@ let mainIterval=function () {
             main_sub1_content.html('<h2>29.51%</h2>');
             main_sub2.text('硕士学历');
             main_sub2_content.html('<h2>6.56%</h2>');
-            main_sub3.text('博士学位');
-            paming_content.attr('class','fanpaiqi')
-            paming_content.html('<h2 style="color: white;margin-left: 14%;margin-top: 1%">0.55%</h2>');
+            main_sub4.text('博士学位');
+            sub4_content.text('0.55');
             option=bigfumuOption();
         }
 

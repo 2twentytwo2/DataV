@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>学习优秀之星</title>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
@@ -59,7 +60,7 @@
                     </div>
                     <div id="threeD_quan"><!--全校学生-->
                         <div style="width: 2%;height: 26%;background-color: #0b3cff;"></div>
-                        <div id="main_sub1" class="main_subTitle">全校优绩学子共</div>
+                        <div id="main_sub1" class="main_subTitle">加权90以上学子共</div>
                         <div class="roll">
                             <div id="main_sub1_content" class="fanpaiqi">
                                 <h2 class="timer count-title" id="count-number" data-to="2212" data-speed="3000"></h2>
@@ -68,15 +69,15 @@
                     </div>
                     <div id="threeD_Guo"><!--90 且 国奖-->
                         <div style="width: 2%;height: 26%;background-color: #0b3cff; "></div>
-                        <div id="main_sub2" class="main_subTitle">国奖加持的优绩共</div>
+                        <div id="main_sub2" class="main_subTitle">90以上且获国奖</div>
                         <div class="roll">
                             <div id="main_sub2_content" class="fanpaiqi">
                                 <h2 class="timer count-title" id="count-number2" data-to="174" data-speed="3000"></h2>
                             </div>
                         </div>
                     </div>
-                    <div id="paiming">
-                        <div style="width: 2%;height: 11%;background-color: #0b3cff;margin-left: 7%; "></div>
+                    <div id="paiming" style="display: flex">
+                        <div style="width: 2%;height: 13%;background-color: #0b3cff;margin-left: 7%; "></div>
                         <div id="main_sub3"style="height: 11%;width: 80%" class="main_subTitle">省份排名</div>
                         <div id="paming_content" style="width: 100%;height: 80%;-webkit-tap-highlight-color: transparent;user-select: none;margin-top: -2%;margin-left: -1%;">
                             <script>
@@ -85,7 +86,13 @@
                                 })
                             </script>
                         </div>
-
+                    </div>
+                    <div id="word" style="display: none">
+                        <div style="display: flex;flex-direction:row;flex-wrap:wrap;width: 100%;height: 35%">
+                            <div style="width: 2%;height: 70%;background-color: #0b3cff;"></div>
+                            <div id="main_sub4" style="height:100%" class="main_subTitle">省份排名</div>
+                        </div>
+                        <h2  id="sub4_content" style="color: white;margin-left: 8%;margin-top: 3%;">94.33</h2>
                     </div>
                 </div>
             </div>
@@ -123,7 +130,7 @@
                 </div>
                 <!-- 轮播图片 成绩前4名-->
                 <div style="color: white;margin-left: 7%;margin-top: 4%;bottom: 0;">
-                    <div class="carousel slide" data-ri  de="carousel">
+                   <div class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner" style="z-index:0;width: 100%">
                             <div class="carousel-item active">
                                 <div style="flex-wrap: wrap;display: flex;flex-direction: row;">
@@ -225,7 +232,7 @@
             <!--title-->
             <div id="div2_1"  onclick="changeDiv2_1()" class="div2small animated zoomIn" style="margin-right: 1.3%">
                 <div style="height: 8%;width: 100%;margin-top: 5%;display: flex;flex-direction: row;">
-                    <div style="background-color: #0b3cff;width: 3%;height: 100%;margin-left: 2%;margin-right: 2%;"></div>
+                    <div style="background-color: #0b3cff;width: 2.5%;height: 110%;margin-left: 3%;margin-right: 2%;"></div>
                     <div style="text-align: center;font-size: 20px;color: white;margin-top: -2%;">
                         成绩组成
                     </div>

@@ -1245,7 +1245,7 @@ let threeDOption=function(){
     var data = [
         {
             name:"浙江",
-                value:0.2591743119
+            value:0.2591743119
         },
         {
             name:"山东",
@@ -1388,8 +1388,6 @@ let threeDOption=function(){
         // 地区经纬度
         geoCoordMap[name] = v.properties.cp;
     });
-
-    console.log(data)
 
     var max = 0.3,
         min = 0; // todo
