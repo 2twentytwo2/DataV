@@ -28,7 +28,7 @@
               "name": "积分排行",
               "type": "wordCloud",
               "gridSize": 20,
-              "sizeRange": [10, 22],
+              "sizeRange": [6, 25],
               "rotationRange": [0, 0],
               "shape": "circle",
               textStyle: {

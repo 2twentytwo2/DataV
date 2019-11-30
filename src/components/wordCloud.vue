@@ -342,7 +342,7 @@
                 name: '搜索指数',
                 type: 'wordCloud',
                 //size: ['9%', '99%'],
-                sizeRange:[5,50],
+                sizeRange:[5,40],
                 rotationRange: [0, 0],
                 //textRotation: [0, 45, 90, -45],
                 //shape: 'circle',

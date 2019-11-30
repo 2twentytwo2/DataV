@@ -113,7 +113,7 @@
                   extraCssText: 'box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);',
                   backgroundColor:'#ba7985',
                   textStyle:{
-                    fontSize: 16
+                    fontSize: 14
                   },
                   formatter: function (params) {
                     return params.name + ' : ' + params.value[2]+'项活动';

@@ -24,10 +24,11 @@
               },
               textStyle: {
                 color: "#fff",
-                fontSize:10
+                fontSize:9
               },
             },
             grid:{
+              top:'18%',
               bottom: '15%',
               left:'15%'
             },
@@ -37,7 +38,7 @@
               top:'3%',
               textStyle: {
                 color: "#fff",
-                fontSize:10
+                fontSize:9
               },
               itemWidth: 12,
               itemHeight: 10,
@@ -57,7 +58,7 @@
                 // rotate: 40,
                 textStyle: {
                   fontFamily: 'Microsoft YaHei',
-                  fontSize:10
+                  fontSize:9
                 }
               },
             },
@@ -81,7 +82,7 @@
               axisLabel: {
                 textStyle: {
                   fontFamily: 'Microsoft YaHei',
-                  fontSize:10
+                  fontSize:9
                 }
               }
             },

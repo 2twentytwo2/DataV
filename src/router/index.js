@@ -14,10 +14,20 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path:'/',
+      path:'/gailan',
+      name:'test',
+      component:test,
+    },
+    {
+      path:'/zhiyuan',
       name:'test',
       component:test1,
+    },{
+      path:'/keyan',
+      name:'test',
+      component:test2,
     }
+
 
   ]
 })

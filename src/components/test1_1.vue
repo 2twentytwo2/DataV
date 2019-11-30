@@ -39,8 +39,8 @@
                 interval: 0,
                 show: true,
                 color: "#fff",
-                margin: 8,
-                fontSize: 11
+                margin: 3,
+                fontSize: 10
               },
             },
             radiusAxis: {

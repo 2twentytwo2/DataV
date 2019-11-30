@@ -5,27 +5,27 @@
       <div style="margin-left: 20px;margin-top: 5px;">科研项目中使用最多的模型</div>
     </div>
     <DIV style="width: 100%;height: 90%">
-      <div style="width: 45%;height: 90%;margin-left: 7%;margin-right: 2%;margin-top: 3%;float: left">
+      <div style="width: 55%;height: 90%;margin-left: 3%;margin-right: 1%;margin-top: 1%;float: left">
         <!--    <h3 style="color: white;text-align: center">科研项目中使用最多的模型</h3>-->
         <table cellspacing="15px" border="0">
           <tr>
-            <td><DIV style="background-color: #0de6f9;width: 20px;height: 20px"></DIV></td>
+            <td><DIV style="background-color: #0de6f9;width: 10px;height: 10px"></DIV></td>
             <td style="font-size: 12px;border-left: 0">logistics回归</td>
           </tr>
           <tr>
-            <td><DIV style="background-color: #039efc;width: 20px;height: 20px"></DIV></td>
+            <td><DIV style="background-color: #039efc;width: 10px;height: 10px"></DIV></td>
             <td style="font-size: 12px;border-left: 0">AHP层次分析模型</td>
           </tr>
           <tr>
-            <td><DIV style="background-color: #5b69fe;width: 20px;height: 20px"></DIV></td>
+            <td><DIV style="background-color: #5b69fe;width: 10px;height: 10px"></DIV></td>
             <td style="font-size: 12px;border-left: 0">结构方程模型</td>
           </tr>
           <tr>
-            <td><DIV style="background-color: #00e6a3;width: 20px;height: 20px"></DIV></td>
+            <td><DIV style="background-color: #00e6a3;width: 10px;height: 10px"></DIV></td>
             <td style="font-size: 12px;border-left: 0">FAHP模型</td>
           </tr>
           <tr>
-            <td><DIV style="background-color: #efc04e;width: 20px;height: 20px"></DIV></td>
+            <td><DIV style="background-color: #efc04e;width: 10px;height: 10px"></DIV></td>
             <td style="font-size: 12px;border-left: 0">模糊综合评价模型</td>
           </tr>
         </table>

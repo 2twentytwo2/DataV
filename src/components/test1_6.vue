@@ -18,7 +18,7 @@
         let myColor = ['#04e0fc', '#5a67ea', '#12dfab', '#ffcd03',  '#5af6c0'];
         let option = {
           grid: {
-            left: '8%',
+            left: '10%',
             top: '12%',
             right: '5%',
             bottom: '8%',
@@ -37,7 +37,7 @@
             axisLabel: {
               textStyle: {
                 color: '#ffffff',
-                fontSize: '12',
+                fontSize: '10',
                 fontWeight:'bold'
               }
             },

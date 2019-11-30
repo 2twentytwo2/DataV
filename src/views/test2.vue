@@ -2,20 +2,24 @@
     <div class="container">
       <img src="../assets/bac3.png" class="bacImg"/>
       <div class="title" >
-        <div style="height: 25% "></div>
-        <div class="subtitle" style="margin-left: 30px;float: left" >科研创新</div>
+        <div class="subtitle" style="margin-left: 3%;margin-right:2%;float: left;width:25%;height: 80%;margin-top: 1%" >科研创新</div>
 
-          <DIV  style=" width: 1%;height: 40px;margin-top:10px;background-color: #0de6f9;margin-left: 230px;float: left"></DIV>
-          <div style="margin-left: 20px;color: #0de6f9;font-size: 40px;float: left;font-weight: lighter">学术论文</div>
-          <div style="margin-left: 20px;color: #efc04e;font-size: 45px;float: left;font-weight: bold">224</div>
+        <div style="display: flex;flex-direction: row;flex-wrap: wrap;width:70%;height: 80%">
+          <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #0de6f9;"></div>
+          <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#0de6f9">学术论文</div>
+          <div style="margin-top:2.3%;margin-right:8%;height: 50%;font-size: 28px;font-weight: bold;color:#efc04e">224篇</div>
 
-        <DIV  style=" margin-left: 100px;width: 1%;height: 40px;margin-top:10px;background-color: #0de6f9;float: left"></DIV>
-        <div style="margin-left: 20px;color: #0de6f9;font-size: 40px;float: left;font-weight: lighter">国家级奖项</div>
-        <div style="margin-left: 20px;color: #efc04e;font-size: 45px;float: left;font-weight: bold">98</div>
+          <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #0de6f9"></div>
+          <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#0de6f9">国家级奖项</div>
+          <div style="margin-top:2.3%;margin-right:8%;height: 50%;font-size: 28px;font-weight: bold;color:#efc04e">98项</div>
 
-        <DIV  style=" margin-left: 100px;width: 1%;height: 40px;margin-top:10px;background-color: #0de6f9;float: left"></DIV>
-        <div style="margin-left: 20px;color: #0de6f9;font-size: 40px;float: left;font-weight: lighter">发明专利</div>
-        <div style="margin-left: 20px;color: #efc04e;font-size: 45px;float: left;font-weight: bold">24</div>
+
+          <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #0de6f9"></div>
+          <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#0de6f9">发明专利</div>
+          <div style="margin-top:2.3%;margin-right:3%;height: 50%;font-size: 28px;font-weight: bold;color:#efc04e">24项</div>
+
+
+        </div>
 
 
       </div>
@@ -169,7 +173,7 @@
             this.clickChart1(3)
             clearInterval(myItv1)
           }
-        },3000)
+        },13000)
         let myItv2 = setInterval(()=>
         {
           if(this.index2 === 6)
@@ -189,7 +193,7 @@
             this.clickChart2(8)
             clearInterval(myItv2)
           }
-        },3500)
+        },13000)
       },
       methods: {
         _initt() {

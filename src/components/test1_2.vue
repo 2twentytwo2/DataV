@@ -74,7 +74,7 @@
                   {
                     type: 'gauge',
                     center: item.pos,
-                    radius: '10%', // 1行3个
+                    radius: '2%', // 1行3个
                     splitNumber: item.splitNum || 10,
                     min: item.range[0],
                     max: item.range[1],
@@ -126,7 +126,7 @@
                     name: item.name,
                     type: 'gauge',
                     center: item.pos,
-                    radius: '30.33%',
+                    radius: '28%',
                     startAngle: 225,
                     endAngle: -45,
                     min: item.range[0],
@@ -155,9 +155,9 @@
                     },
                     detail: {
                       show: true,
-                      offsetCenter: [0, '100%'],
+                      offsetCenter: [0, '110%'],
                       textStyle: {
-                        fontSize: 12,
+                        fontSize: 10,
                         color: '#fff'
                       },
                       formatter: [
@@ -166,8 +166,8 @@
                       ].join('\n'),
                       rich: {
                         name: {
-                          fontSize: 12,
-                          lineHeight: 30,
+                          fontSize: 10,
+                          lineHeight: 20,
                           color: '#fff',
                           fontWeight: 'bold'
                         }

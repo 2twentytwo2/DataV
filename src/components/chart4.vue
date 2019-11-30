@@ -165,7 +165,7 @@
               beta: 160,
               autoRotate: true,
               autoRotateAfterStill: 10,
-              distance: 180,
+              distance: 190,
               autoRotateSpeed: 4
             },
             layers: [{

@@ -2,32 +2,56 @@
     <div class="container">
       <div class="title">
 
-        <div style="width: 22.7%;height: 100%;color:#e1cbec;text-align:center;margin-top:15px;font-size: 52px;font-weight: bold">志愿活动</div>
-        <div  style="width: 20%;height: 40%;display: flex;flex-direction: row;flex-wrap: wrap;margin-top:20px">
-          <div style="margin-top:15px;width: 5px;height: 100%;background-color: #635a68">
-          </div>
-          <div style="width: calc(60% - 5px);height: 100%">
-            <div style="width: 100%;height: 100%;color:#e1cbec;text-align:center;margin-top:18px;font-size: 20px">志愿者总数</div>
-          </div>
-          <div style="width: 40%;height: 100%;color:#5dcacd ;margin-top:12px;font-size: 28px;font-weight: bold">1026人</div>
+        <div style="width: 22.7%;height: 80%;color:#e1cbec;text-align:center;margin-top:1%;font-size: 45px;font-weight: bold">志愿活动</div>
+        <div style="display: flex;flex-direction: row;flex-wrap: wrap;width:77%;height: 80%">
+          <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #635a68;"></div>
+          <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#e1cbec">志愿者总人数</div>
+          <div style="margin-top:2.3%;margin-right:3%;height: 50%;font-size: 28px;font-weight: bold;color:#5dcacd">1026人</div>
+
+          <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #635a68"></div>
+          <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#e1cbec">星级志愿者人数</div>
+          <div style="margin-top:2.3%;margin-right:3%;height: 50%;font-size: 28px;font-weight: bold;color:#5dcacd">1026人</div>
+
+
+          <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #635a68"></div>
+          <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#e1cbec">星级志愿者总工时</div>
+          <div style="margin-top:2.3%;margin-right:3%;height: 50%;font-size: 28px;font-weight: bold;color:#5dcacd">248922时</div>
+
+
         </div>
-        <div  style="width: 20%;height: 40%;display: flex;flex-direction: row;flex-wrap: wrap;margin-top:20px">
-          <div style="margin-top:15px;width: 5px;height: 100%;background-color: #635a68">
-          </div>
-          <div style="width: calc(60% - 5px);height: 100%">
-            <div style="width: 100%;height: 100%;color:#e1cbec;text-align:center;margin-top:18px;font-size: 20px">星级志愿者总数</div>
-          </div>
-          <div style="width: 40%;height: 100%;color:#5dcacd ;margin-top:12px;font-size: 28px;font-weight: bold">1026人</div>
-        </div>
-        <div  style="width: 25%;height: 40%;display: flex;flex-direction: row;flex-wrap: wrap;margin-top:20px">
-          <div style="margin-top:15px;width: 5px;height: 100%;background-color: #635a68">
-          </div>
-          <div style="width: calc(55% - 5px);height: 100%">
-            <div style="width: 100%;height: 100%;color:#e1cbec;text-align:center;margin-top:18px;font-size: 20px">星级志愿者总工时</div>
-          </div>
-          <div style="width: 45%;height: 100%;color:#5dcacd;margin-top:12px;font-size: 28px;font-weight: bold">248922.55时</div>
-        </div>
+
+<!--        <div  style="width: 25%;height: 40%;display: flex;flex-direction: row;flex-wrap: wrap;margin-top:20px">-->
+<!--          <div style="margin-top:4%;width: 5px;height: 100%;background-color: #635a68">-->
+<!--          </div>-->
+<!--          <div style="width: calc(60% - 5px);height: 100%">-->
+<!--            <div style="width: 100%;height: 100%;color:#e1cbec;margin-top:5%;margin-left:10%;font-size: 20px">志愿者总数</div>-->
+<!--          </div>-->
+<!--          <div style="width: 40%;height: 100%;color:#5dcacd ;margin-top:1%;font-size: 28px;font-weight: bold">1026人</div>-->
+<!--        </div>-->
+
+<!--        <div  style="width: 25%;height: 40%;display: flex;flex-direction: row;flex-wrap: wrap;margin-top:20px">-->
+<!--          <div style="margin-top:4%;width: 5px;height: 100%;background-color: #635a68">-->
+<!--          </div>-->
+<!--          <div style="width: calc(60% - 5px);height: 100%">-->
+<!--            <div style="width: 100%;height: 100%;color:#e1cbec;margin-top:5%;margin-left:10%;font-size: 20px">星级志愿者总数</div>-->
+<!--          </div>-->
+<!--          <div style="width: 40%;height: 100%;color:#5dcacd ;margin-top:1%;font-size: 28px;font-weight: bold">1026人</div>-->
+<!--        </div>-->
+
+
+
+<!--        <div  style="width: 25%;height: 40%;display: flex;flex-direction: row;flex-wrap: wrap;margin-top:20px">-->
+<!--          <div style="margin-top:4%;width: 5px;height: 100%;background-color: #635a68">-->
+<!--          </div>-->
+<!--          <div style="width: calc(60% - 5px);height: 100%">-->
+<!--            <div style="width: 100%;height: 100%;color:#e1cbec;margin-left:10%;margin-top:5%;font-size: 20px">星级志愿者总工时</div>-->
+<!--          </div>-->
+<!--          <div style="width: 40%;height: 100%;color:#5dcacd ;margin-top:1%;font-size: 28px;font-weight: bold">248922时</div>-->
+<!--        </div>-->
+
+
       </div>
+
       <img src="../assets/未标题.gif" style="opacity:0.5" class="bac"/>
   <section class="parent">
 
@@ -39,11 +63,11 @@
         <DIV class="subtitle">星级志愿者分布</DIV>
         <div style="width: 100%;height: 92%">
           <DIV style="width: 100%;height: 50%;display: flex;flex-direction: column;flex-wrap: wrap;margin-top: 5%">
-            <v-chart style="width: 45%;height: 100%":options="optionOnePie"> </v-chart>
+            <v-chart style="width: 45%;height: 100%":options="optionOnePie" autoresize> </v-chart>
             <apexchart style="margin-top:10%;width: 40%;height: 80%" type=line :options="chartOptionsSparkLine" :series="seriesSpark1"></apexchart>
           </DIV>
 
-          <table style="border-color:white;border:1px solid white;width: 100%;height: 35%;text-align: center">
+          <table style="width: 100%;height: 35%;text-align: center">
 
             <tr >
               <td style="width: 5px"><div style="margin-left:20px;margin-right:10px;background-color:#8b7397;width: 10px;height: 10px"></div></td>
@@ -91,7 +115,7 @@
 
       <div style="width: calc(100% - 9px);height: 100%">
 
-        <div class="subtitle">志愿服务关键词</div>
+        <div class="subtitle">志愿活动关键词</div>
         <word-cloud style="width: 100%;height: 92%"></word-cloud>
 
       </div>
@@ -135,7 +159,7 @@
         <div style="width: 5px;height: 100%;background-color: #635a68">
         </div>
         <div style="width: calc(100% - 9px);height: 100%">
-          <DIV class="subtitle">志愿地点分布</DIV>
+          <DIV class="subtitle">志愿活动地点分布</DIV>
           <v-chart :options="optionMap" autoresize style="width: 100%;height: 92%"></v-chart>
         </div>
         <div style="width: 4px;height: 100%">
@@ -193,7 +217,7 @@
       </div>
 
       <div style="width: calc(100% - 9px);height: 100%">
-        <DIV class="subtitle">标题</DIV>
+        <DIV class="subtitle">志愿活动地点分布</DIV>
         <testmap style="height: 92%;width: 100%"></testmap>
       </div>
 
@@ -210,7 +234,7 @@
 
       <div style="width: calc(100% - 9px);height: 100%">
 
-        <div class="subtitle">标题</div>
+        <div class="subtitle">志愿活动类型占比分布</div>
         <v-chart :options="barOption2" autoresize style="width: 100%;height: 92%"></v-chart>
 
       </div>
@@ -288,7 +312,7 @@
                   },
                   label: {
                     normal: {
-                      show: true,
+                      show: false,
                       textStyle: {
                         color: '#fff',
                         fontSize: 10,
@@ -429,7 +453,7 @@
             },
             optionMap: {
             grid:{
-              x:'73%',
+              x:'80%',
               top:'10%',
               width:'15%',
               height:'80%'
@@ -466,7 +490,7 @@
                 textStyle: {
                   color: '#fff',
                   align: 'left',
-                  fontSize: 14
+                  fontSize: 12
                 },
                 rich: {
                   a: {
@@ -672,7 +696,7 @@
                 },
                 itemStyle: {
                   normal: {
-                    color: '#d7b4ba',
+                    color: '#ba7985',
                     shadowBlur: 10,
                     shadowColor: '#05C3F9'
                   }
@@ -1016,7 +1040,7 @@
                 {
                   name:'星级志愿者分布',
                   type:'pie',
-                  color:["#8b7397",'#d7b4ba','#ba7985','#e1cbec'],
+                  color:["#8b7397",'#ba7985','#d7b4ba','#e1cbec'],
                   radius:' 25%',
                   center: ['57%', '40%'],
                   avoidLabelOverlap: false,
@@ -1145,10 +1169,10 @@
               tooltip: {
                 trigger: 'axis',
                 extraCssText: 'box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);',
-                position: ['70%', 10],
+                position: ['60%', 10],
                 backgroundColor:'rgba(132,123,154,0.8)',
                 textStyle:{
-                  fontSize: 16
+                  fontSize: 15
                 },
                 axisPointer: {
                   type: 'shadow',
@@ -1158,11 +1182,11 @@
                 }
               },
               legend: {
-                top:'8%',
+                top:'4%',
                 data: ['学院平均工时','男生平均工时', '女生平均工时'],
                 textStyle: {
                   color: '#fff',
-                  fontSize: 16
+                  fontSize: 15
                 },
               },
               grid:{
@@ -1411,8 +1435,8 @@
               left: '5%',
               right: '7%',
               bottom: '7%',
-              top: '10%',
-              height:'86%',
+              top: '7%',
+              height:'93%',
               containLabel: true
             }
             ],
@@ -1438,8 +1462,8 @@
               {
                 show: true,
                 type: 'bar',
-                barGap: '-100%',
-                barWidth: '20%',
+                barGap: '-110%',
+                barWidth: '10%',
                 z: 2,
                 itemStyle: {
                   normal: {
@@ -1454,12 +1478,12 @@
                     show: true,
                     textStyle: {
                       color: '#fff',
-                      fontSize: 16,
+                      fontSize: 10,
                       fontWeight: 'bold'
                     },
                     position: 'right',
                     formatter: function(data) {
-                      return chartData[data.dataIndex] ;
+                      return ' '+chartData[data.dataIndex] ;
                     }
                   }
                 },
@@ -1470,7 +1494,7 @@
                 show: true,
                 type: 'bar',
                 xAxisIndex: 1, //代表使用第二个X轴刻度
-                barGap: '-100%',
+                barGap: '-110%',
                 barWidth: '10%',
                 itemStyle: {
                   normal: {
@@ -1481,9 +1505,9 @@
                 label: {
                   normal: {
                     show: true,
-                    position: [0, '-20'],
+                    position: [0, '-18'],
                     textStyle: {
-                      fontSize:14,
+                      fontSize:13,
                       color: '#fff',
                     },
                     formatter: function(data) {
@@ -1497,7 +1521,6 @@
             ]
           };
         },
-
 
 
         initOptionOfLeftOne()
@@ -2042,7 +2065,7 @@
               name: '搜索指数',
               type: 'wordCloud',
               //size: ['9%', '99%'],
-              sizeRange:[6,50],
+              sizeRange:[5,40],
               maskImage:myImage,
               //shape: 'circle',
               textPadding: 0,
@@ -2095,9 +2118,10 @@
   .subtitle{
     width: 100%;
     height: 5%;
-    font-size: 20px;
+    font-size: 16px;
     padding-top: 10px;
     padding-left: 10px;
+    font-weight: bold;
     color: white;
     text-align: left;
   }

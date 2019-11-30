@@ -74,7 +74,7 @@
                   "name": p,
                   "showName": json[p],
                   "symbol":'circle',
-                  "symbolSize": 20,
+                  "symbolSize": 18,
                   "category": n,
                   "draggable": "false",
                   formatter: function(params) {
@@ -179,13 +179,16 @@
             setLinkData(carNum, relationShipCar, legendes[3]);
 
             let option = {
+              grid:{
+                top:'80%'
+              },
               animationDuration: 1000,
               animationEasingUpdate: 'quinticInOut',
               series: [{
                 type: 'graph',
                 layout: 'force',
                 force: {
-                  repulsion: 80,
+                  repulsion: 100,
                   gravity: 0,
                   edgeLength: 10,
                   layoutAnimation: true,

@@ -34,7 +34,7 @@
                 {
                   text:item.name,
                   left: index * 25 + 13 +'%',
-                  top: '85%',
+                  top: '80%',
                   textAlign: 'center',
                   textStyle: {
                     fontWeight: 'normal',
@@ -49,7 +49,7 @@
                   name: item.name,
                   type: 'pie',
                   clockWise: false,
-                  radius: [60, 70],
+                  radius: [50, 58],
                   itemStyle:  {
                     normal: {
                       color: colors[index][0],
@@ -64,7 +64,7 @@
                     }
                   },
                   hoverAnimation: false,
-                  center: [index * 25 + 13 +'%', '50%'],
+                  center: [index * 25 + 13 +'%', '45%'],
                   data: [{
                     value: item.value,
                     label: {
@@ -75,7 +75,7 @@
                         position: 'center',
                         show: true,
                         textStyle: {
-                          fontSize: '20',
+                          fontSize: '16',
                           fontWeight: 'bold',
                           color: colors[index][0]
                         }
@@ -101,6 +101,10 @@
               series: seriesArr
             }
             chart.setOption(option)
+
+            window.onresize = ()=>{
+              chart.resize();
+            }
           }
       }
     }

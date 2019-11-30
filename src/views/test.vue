@@ -5,16 +5,16 @@
     <img src="../assets/backgrround_blue2.png" class="bacImage"/>
 
     <div class="title" style="text-align: center ">
-      <div style="color: white;margin:10px 20px 0;font-size: 55px">点赞青春·概览</div>
+      <div style="color: white;margin-top: 20px;font-size: 50px">典赞青春·概览</div>
     </div>
 
     <section class="parent">
 
       <section class="item" @click="clickChart('1')"  style="transform:translate(-30%,-32%) scale(0.32)">
-        <div class="subtitle" >标题</div>
+        <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>各维度脱单率</div>
         <div  class="main" >
           <div style="width: 99%;height: 100%;">
-            <v-chart :options="radarOption1" style="width: 100%;height: 90%;"></v-chart>
+            <v-chart :options="radarOption1" autoresize style="width: 100%;height: 90%;"></v-chart>
           </div>
 
           </div>
@@ -22,10 +22,10 @@
 
       <section  class="item"  @click="clickChart('2')" style="transform:translate(-30%,2%) scale(0.32)">
 
-        <div class="subtitle" >标题</div>
+        <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>不同年龄获奖人数</div>
         <div  class="main" >
           <div style="width: 99%;height: 100%;">
-            <v-chart :options="ageOption" style="width: 100%;height: 90%;"></v-chart>
+            <v-chart :options="ageOption" autoresize style="width: 100%;height: 90%;"></v-chart>
           </div>
 
         </div>
@@ -34,7 +34,8 @@
 
       <section  class="item"  @click="clickChart('3')" style="transform:translate(-30%,36%) scale(0.32)">
 
-        <div class="subtitle" >标题</div>
+        <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>各年级维度分数</div>
+
         <div  class="main" >
           <div style="width: 99%;height: 100%;">
             <v-chart :options="radarOption2" autoresize style="width: 100%;height: 90%;"></v-chart>
@@ -51,21 +52,21 @@
       >
 
         <section v-if="isShow.earth" class="item active"  style="transform:translate(21.5%,-12%) scale(0.72)">
-        <div class="subtitle" >标题</div>
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>国外合办高校</div>
         <div class="main">
           <earth style="width: 100%;height: 100%"></earth>
 
         </div>
       </section>
         <section v-if="isShow.radar1" class="item active"  style="transform:translate(21.5%,-12%) scale(0.72)">
-          <div class="subtitle" >标题</div>
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>各维度脱单率</div>
           <div class="main">
             <v-chart autoresize :options="radarCenter" style="width: 100%;height: 100%" ref="radar"></v-chart>
 
           </div>
         </section>
         <section v-if="isShow.bar" class="item active" style="transform:translate(21.5%,-12%) scale(0.72)">
-          <div class="subtitle" >标题</div>
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>不同年龄获奖人数</div>
           <div class="main">
             <v-chart :options="ageCenter" autoresize style="width:100%;height:100%" ref="bar"></v-chart>
 
@@ -73,7 +74,7 @@
         </section>
 
         <section v-if="isShow.radar2" class="item active" style="transform:translate(21.5%,-12%) scale(0.72)">
-          <div class="subtitle" >标题</div>
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>各年级维度分数</div>
           <div class="main">
               <div style="width: 100%;height: 100%">
               <v-chart :options="radarCenter2" autoresize style="width: 100%;height: 48%;"></v-chart>
@@ -87,7 +88,8 @@
         </section>
 
         <section v-if="isShow.pie" class="item active"  style="transform:translate(21.5%,-12%) scale(0.72)">
-          <div class="subtitle" >标题</div>
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>男女比例</div>
+
           <div class="main">
             <v-chart autoresize :options="proportionCenter" style="width: 100%;height: 90%"></v-chart>
 
@@ -95,7 +97,8 @@
         </section>
 
         <section v-if="isShow.nation"  class="item active"   style="transform:translate(21.5%,-12%) scale(0.72)">
-          <div class="subtitle" >标题</div>
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>少数民族人数</div>
+
           <div class="main">
 
             <v-chart autoresize style="width: 100%;height: 90%" :options="nationCenter" ref="nation"></v-chart>
@@ -106,20 +109,21 @@
 
 
       <section class="item"  @click="clickChart('5')"  style="transform:translate(84%,-32%) scale(0.32)">
-        <div class="subtitle" >标题</div>
+        <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 34px;margin-right: 10px"></span>男女比例</div>
         <div  class="main" >
         <div style="width: 99%;height: 100%;">
-          <v-chart :options="proportion" style="width: 100%;height: 90%;"></v-chart>
+          <v-chart :options="proportion" autoresize style="width: 100%;height: 90%;"></v-chart>
         </div>
 
       </div>
       </section>
 
       <section class="item" @click="clickChart('6')"  style="height:215%;transform:translate(84%,-16%) scale(0.32)">
-        <div class="subtitle" >标题</div>
+        <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 34px;margin-right: 10px"></span>少数民族人数</div>
+
         <div  class="main" >
           <div style="width: 99%;height: 100%;">
-            <v-chart :options="nationOption" style="width: 100%;height: 90%;"></v-chart>
+            <v-chart :options="nationOption" autoresize style="width: 100%;height: 90%;"></v-chart>
           </div>
 
         </div>
@@ -160,7 +164,8 @@ import chart5 from '@/components/chart5'
               left: '1%',
               top: '6%',
               textStyle: {
-                color: '#fff'
+                color: '#fff',
+                fontSize:20
               }
             }, {
               text: '男女比概览',
@@ -168,7 +173,8 @@ import chart5 from '@/components/chart5'
               top: '6%',
               textAlign: 'center',
               textStyle: {
-                color: '#fff'
+                color: '#fff',
+                fontSize:20
               }
             }],
             tooltip: {
@@ -179,6 +185,7 @@ import chart5 from '@/components/chart5'
               top: '7%',
               textStyle: {
                 color: '#fff',
+                fontSize:20
               },
               data: ['男', '女']
             },
@@ -207,7 +214,8 @@ import chart5 from '@/components/chart5'
               },
               axisLabel: {
                 textStyle: {
-                  color: '#fff'
+                  color: '#fff',
+                  fontSize:20
                 }
               },
 
@@ -231,7 +239,8 @@ import chart5 from '@/components/chart5'
               },
               axisLabel: {
                 textStyle: {
-                  color: '#fff'
+                  color: '#fff',
+                  fontSize:20
                 }
               },
               type: 'value'
@@ -267,7 +276,7 @@ import chart5 from '@/components/chart5'
                 label: {
                   normal: {
                     position: 'center',
-                    fontSize:17
+                    fontSize:20
                   }
                 },
                 data: [
@@ -283,7 +292,7 @@ import chart5 from '@/components/chart5'
                     normal: {
                       textStyle: {
                         color: '#fff',
-                        fontSize: 16
+                        fontSize: 20
                       },
                       formatter: '全校男女比'
                     }
@@ -335,7 +344,7 @@ import chart5 from '@/components/chart5'
                       formatter: '获奖男女比',
                       textStyle: {
                         color: '#fff',
-                        fontSize: 16
+                        fontSize: 20
                       }
                     }
                   }
@@ -403,13 +412,13 @@ import chart5 from '@/components/chart5'
                 }
               ],
               radius: '70%',
-              center: ['50%', '45%'],
+              center: ['50%', '50%'],
               shape: 'circle',
               splitNumber: 4,
               name: {
                 textStyle: {
                   color: '#fff',
-                  fontSize: 15
+                  fontSize: 18
                 },
                 formatter: function(value) {
                   return '{a|' + value + '} '
@@ -417,7 +426,7 @@ import chart5 from '@/components/chart5'
                 lineHeight: 20,
                 rich: {
                   a: {
-                    fontSize: 25,
+                    fontSize: 35,
                     align: 'center'
                   },
                   b: {
@@ -504,7 +513,7 @@ import chart5 from '@/components/chart5'
               position: ['60%', '25%'],
               backgroundColor:'rgba(8,217,197, 0.5)',
               textStyle:{
-                fontSize: 16
+                fontSize: 20
               },
             },
             grid:{
@@ -517,7 +526,7 @@ import chart5 from '@/components/chart5'
               nameRotate:40,
               axisLabel:{
                 textStyle:{
-                  fontSize:16,
+                  fontSize:20,
                   color:'#fff'
                 },
                 rotate:40
@@ -593,7 +602,7 @@ import chart5 from '@/components/chart5'
               name: {
                 textStyle: {
                   color: '#fff',
-                  fontSize: 15
+                  fontSize: 20
                 },
                 formatter: function(value) {
                   return '' + value + ' '
@@ -601,7 +610,7 @@ import chart5 from '@/components/chart5'
                 lineHeight: 20,
                 rich: {
                   a: {
-                    fontSize: 15,
+                    fontSize: 20,
                     align: 'center'
                   },
                   b: {
@@ -732,16 +741,15 @@ import chart5 from '@/components/chart5'
             legend: {
               data: ['获奖者人数','占比'],
               textStyle: {
-                color: '#B4B4B4',
-                fontSize:30
+                color: '#fff',
+                fontSize:35
               },
               top:'2%',
             },
             grid:{
-              x:'12%',
+              x:'11%',
               width:'82%',
-              y:'5%',
-              bottom:'15%'
+              bottom:'10%'
             },
             xAxis: {
               data: ['16','17','18','19','20','21','22','23','24','25','29'],
@@ -755,7 +763,7 @@ import chart5 from '@/components/chart5'
               },
               axisLabel:{
                 textStyle:{
-                  fontSize:25
+                  fontSize:30
                 }
               }
             },
@@ -770,7 +778,7 @@ import chart5 from '@/components/chart5'
 
               axisLabel:{
                 textStyle:{
-                  fontSize:25
+                  fontSize:30
                 }
               }
             },
@@ -785,7 +793,7 @@ import chart5 from '@/components/chart5'
                 },
                 axisLabel:{
                   textStyle:{
-                    fontSize:25
+                    fontSize:30
                   }
                 }
               }],
@@ -859,16 +867,19 @@ import chart5 from '@/components/chart5'
           },
           ageCenter:{
 
-
             tooltip: {
               trigger: 'axis',
               backgroundColor:'rgba(58,147,210,0.4)',
-              position:['10%','0%'],
+              position:['10%','3%'],
+              textStyle:{
+                fontSize: 20
+              },
               axisPointer: {
                 type: 'shadow',
                 label: {
                   show: true,
-                  backgroundColor: '#fff'
+                  backgroundColor: '#fff',
+
                 }
               }
             },
@@ -878,7 +889,7 @@ import chart5 from '@/components/chart5'
                 color: '#fff',
                 fontSize:20
               },
-              top:'13%',
+              top:'8%',
               right:'10%'
             },
             grid:{
@@ -900,7 +911,7 @@ import chart5 from '@/components/chart5'
               },
               axisLabel:{
                 textStyle:{
-                  fontSize:16
+                  fontSize:20
                 }
               }
             },
@@ -915,7 +926,7 @@ import chart5 from '@/components/chart5'
 
               axisLabel:{
                 textStyle:{
-                  fontSize:16
+                  fontSize:20
                 }
               }
             },
@@ -930,7 +941,7 @@ import chart5 from '@/components/chart5'
                 },
                 axisLabel:{
                   textStyle:{
-                    fontSize:18
+                    fontSize:20
                   }
                 }
               }],
@@ -1032,6 +1043,12 @@ import chart5 from '@/components/chart5'
                 length: 5,
 
               },
+              axisLabel:{
+                textStyle:{
+                  fontSize:20,
+                  color:'#fff'
+                },
+              },
               "splitLine": { //网格线
                 "show": false
               },
@@ -1056,7 +1073,8 @@ import chart5 from '@/components/chart5'
                     position: 'right',
                     formatter: '{c}',
                     textStyle: {
-                      color: 'white' //color of value
+                      color: 'white', //color of value
+                      fontSize:20
                     }
                   }
                 },
@@ -1127,6 +1145,12 @@ import chart5 from '@/components/chart5'
               "splitLine": { //网格线
                 "show": false
               },
+              axisLabel:{
+                textStyle:{
+                  fontSize:20,
+                  color:'#fff'
+                },
+              },
               inverse: 'true', //排序
               axisLine: {
                 show: false,
@@ -1148,7 +1172,10 @@ import chart5 from '@/components/chart5'
                     position: 'right',
                     formatter: '{c}',
                     textStyle: {
-                      color: 'white' //color of value
+                      color: 'white',
+
+
+                      fontSize:20//color of value
                     }
                   }
                 },
@@ -1226,6 +1253,12 @@ import chart5 from '@/components/chart5'
                   color: '#fff',
                 }
               },
+              axisLabel:{
+                textStyle:{
+                  fontSize:20,
+                  color:'#fff'
+                },
+              },
               data: []
             }
 
@@ -1240,7 +1273,8 @@ import chart5 from '@/components/chart5'
                     position: 'right',
                     formatter: '{c}',
                     textStyle: {
-                      color: 'white' //color of value
+                      color: 'white',
+                      fontSize:20//color of value
                     }
                   }
                 },
@@ -1379,7 +1413,7 @@ import chart5 from '@/components/chart5'
               y: 'center',
               textStyle: {
                 color: "#fff",
-                fontSize: 30,
+                fontSize: 35,
                 fontWeight: 'normal'
               },
               subtextStyle: {
@@ -1402,7 +1436,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [70, 100],
+                radius: [90, 110],
                 center: ['30%', '50%'],
                 data: [{
                   value: 10382,
@@ -1418,13 +1452,13 @@ import chart5 from '@/components/chart5'
                   },
                   label: {
                     color: "rgba(255,255,255,.45)",
-                    fontSize: 14,
-                    formatter: '{a|全校男女比}\n{a|8：17}',
+                    fontSize: 30,
+                    formatter: '{a|全校男女比}\n\n{a|8：17}',
                     position: 'center',
                     rich: {
                       a: {
                         color: "#fff",
-                        fontSize: 20,
+                        fontSize: 30,
                         lineHeight: 30
                       },
                     }
@@ -1445,7 +1479,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [70, 100],
+                radius: [90, 110],
                 center: ['30%', '50%'],
                 data: [{
                   value: 10382,
@@ -1474,7 +1508,7 @@ import chart5 from '@/components/chart5'
                       rich: {
                         a: {
                           color: "#fff",
-                          fontSize: 20,
+                          fontSize: 30,
                           lineHeight: 30
                         },
                       }
@@ -1485,7 +1519,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [70, 100],
+                radius: [90, 110],
                 center: ['70%', '50%'],
                 data: [{
                   value: 41,
@@ -1502,12 +1536,12 @@ import chart5 from '@/components/chart5'
                   label: {
                     color: "rgba(255,255,255,.45)",
                     position:'center',
-                    fontSize: 14,
-                    formatter: '{a|获奖男女比\n9：41}',
+                    fontSize: 30,
+                    formatter: '{a|获奖男女比\n\n9：41}',
                     rich: {
                       a: {
                         color: "#fff",
-                        fontSize: 20,
+                        fontSize: 30,
                         lineHeight: 30
                       },
                     }
@@ -1525,7 +1559,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [70, 100],
+                radius: [90, 110],
                 center: ['70%', '50%'],
                 data: [{
                   value: 41,
@@ -1549,12 +1583,12 @@ import chart5 from '@/components/chart5'
                     label: {
                       position:'center',
                       color: "rgba(255,255,255,.45)",
-                      fontSize: 14,
+                      fontSize: 30,
                       formatter: '',//男生\n{a|4910}个
                       rich: {
                         a: {
                           color: "#fff",
-                          fontSize: 20,
+                          fontSize: 30,
                           lineHeight: 30
                         },
                       }
@@ -1674,7 +1708,7 @@ import chart5 from '@/components/chart5'
                   "margin": -4,
                   "textStyle": {
                     "color": "#fff",
-                    "fontSize":25
+                    "fontSize":35
                   }
                 }
               },
@@ -2176,7 +2210,7 @@ import chart5 from '@/components/chart5'
                   normal: {
                     color: '#fff',
                     interval: 0,
-                    fontSize: 18,
+                    fontSize: 30,
                     padding: [0, 0, -50, 0],
                     lineHeight: 100
                   },
@@ -2194,7 +2228,7 @@ import chart5 from '@/components/chart5'
                 left: "3%",
                 textStyle: {
                   color: '#fff',
-                  fontSize: 15,
+                  fontSize: 25,
                   fontWeight: 'bold'
                 },},
               data: ['2016级', '2017级', '2018级'],
@@ -2232,7 +2266,7 @@ import chart5 from '@/components/chart5'
                   lineHeight: 20,
                   rich: {
                     a: {
-                      fontSize: 25,
+                      fontSize: 35,
                       align: 'center'
                     },
                     b: {
@@ -2317,7 +2351,7 @@ import chart5 from '@/components/chart5'
                     lineHeight: 20,
                     rich: {
                       a: {
-                        fontSize: 25,
+                        fontSize: 35,
                         align: 'center'
                       },
                       b: {
@@ -2391,7 +2425,7 @@ import chart5 from '@/components/chart5'
                     lineHeight: 20,
                     rich: {
                       a: {
-                        fontSize: 25,
+                        fontSize: 35,
                         align: 'center'
                       },
                       b: {
@@ -2597,7 +2631,7 @@ import chart5 from '@/components/chart5'
                 left: "10%",
                 textStyle: {
                   color: '#fff',
-                  fontSize: 15,
+                  fontSize: 20,
                   fontWeight: 'bold'
                 },
 
@@ -2638,7 +2672,7 @@ import chart5 from '@/components/chart5'
                     lineHeight: 20,
                     rich: {
                       a: {
-                        fontSize: 16,
+                        fontSize: 20,
                         align: 'center'
                       },
                       b: {
@@ -2730,7 +2764,7 @@ import chart5 from '@/components/chart5'
                     lineHeight: 20,
                     rich: {
                       a: {
-                        fontSize: 16,
+                        fontSize: 20,
                         align: 'center'
                       },
                       b: {
@@ -2805,7 +2839,7 @@ import chart5 from '@/components/chart5'
                     lineHeight: 20,
                     rich: {
                       a: {
-                        fontSize: 16,
+                        fontSize: 20,
                         align: 'center'
                       },
                       b: {
@@ -2893,10 +2927,13 @@ import chart5 from '@/components/chart5'
   }
   .title{
     width: 100%;
-    height: 10%;
+    height: 9%;
   }
   .subtitle{
-    font-size: 32px;
+    font-size: 45px;
+    color:#fff;
+    margin-left: 20px;
+    margin-top: 10px;
   }
   section{
     z-index: 1;
