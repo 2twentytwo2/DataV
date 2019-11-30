@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'sy';
+src: url('hs.ttf');
+font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'ch';
+  src: url('ch.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
