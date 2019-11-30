@@ -24,7 +24,7 @@ let socialInterval=function () {
         main_3.hide();
         main_4.hide();
         clearInterval(temp);
-    },4000);
+    },10000);
 
     //显示下一个div
     let mainInter=setInterval(()=>{
@@ -64,7 +64,7 @@ let socialInterval=function () {
             console.log('4444')
         }
         mainChart.setOption(option,true);
-    },4300);
+    },10500);
 
     let hide=setInterval(()=>{
         //let $dom=$("#main");
@@ -74,5 +74,5 @@ let socialInterval=function () {
         $('#main_3').hide();
         $('#main_4').hide();
         $('#main_5').hide();
-    },4000);
+    },10000);
 }

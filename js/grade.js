@@ -9,7 +9,6 @@ console.log(img.item(0))
  * @param name
  */
 var myChart;
-var myOption;
 /**
  * 柱形图
  * @param name
@@ -4623,8 +4622,8 @@ let fumuOption=function(){
             trigger: 'item'
         },
         grid:{
-            bottom:'40%',
-            top:'40%'
+            bottom:'35%',
+            top:'30%'
         },
         dataRange: {
             show: false,
@@ -4724,7 +4723,7 @@ let bigfumuOption=function(){
 
     let option = {
         grid:{
-            bottom:'10%',
+            bottom:'15%',
             top:'10%',
         },
         tooltip: {

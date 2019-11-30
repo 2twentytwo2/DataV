@@ -89,7 +89,7 @@ let mainIterval=function () {
         let $dom=$("#div1Content_"+maintime);
         $dom.addClass("zoomOut");
         clearInterval(temp);
-    },5000);
+    },10000);
     //显示下一个div
     setInterval(()=>{
         let $dom=$("#div1Content_1");
@@ -159,12 +159,12 @@ let mainIterval=function () {
         }
 
         myChartMain.setOption(option,true);
-    },5500);
+    },10500);
     //隐藏当前div
     setInterval(()=>{
         let $dom=$("#div1Content_1");
         $dom.addClass("zoomOut");
-    },5000);
+    },10000);
 }
 
 //点击div2_1
