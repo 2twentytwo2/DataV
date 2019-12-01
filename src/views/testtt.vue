@@ -6,7 +6,7 @@
         <div style="display: flex;flex-direction: row;flex-wrap: wrap;width:77%;height: 80%">
           <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #635a68;"></div>
           <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#e1cbec">志愿者总人数</div>
-          <div style="margin-top:2.3%;margin-right:3%;height: 50%;font-size: 28px;font-weight: bold;color:#5dcacd">1026人</div>
+          <div style="margin-top:2.3%;margin-right:3%;height: 50%;font-size: 28px;font-weight: bold;color:#5dcacd">14273人</div>
 
           <div style="margin-top:3%;margin-right:3%;width: 5px;height: 50%;background-color: #635a68"></div>
           <div style="margin-top:3%;margin-right:3%;height: 50%;font-size: 20px;color:#e1cbec">星级志愿者人数</div>

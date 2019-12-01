@@ -4,8 +4,16 @@
 
     <img src="../assets/backgrround_blue2.png" class="bacImage"/>
 
-    <div class="title" style="text-align: center ">
-      <div style="color: white;margin-top: 20px;font-size: 50px">典赞青春·概览</div>
+    <div class="title" style="">
+      <div style="color: white;margin-top: 1.5%;font-family: ch;font-size: 45px;margin-left:2.5%;float: left">典赞青春·概览</div>
+
+
+
+      <div style="margin-top: 2.3%;font-size: 35px;margin-left:2%;margin-right:2.5%;float: right;color: rgba(0,226,225, 1);font-weight: bold">2333</div>
+      <div style="color: white;margin-top: 2.5%;font-family: ch;font-size: 30px;margin-left:4%;float: right">获荣誉称号表彰总人数</div>
+      <div style="margin-top: 2.3%;font-size: 35px;margin-left:2%;float: right;color: rgba(0,226,225, 1);font-weight: bold">6444</div>
+
+      <div style="color: white;margin-top: 2.5%;font-family: ch;font-size: 30px;margin-left:10%;float: right">获奖学金总人数</div>
     </div>
 
     <section class="parent">
@@ -50,12 +58,22 @@
         enter-active-class="animated flash"
         leave-active-class="animated flash"
       >
+        <section v-if="isShow.name" class="item active"  style="transform:translate(21.5%,-12%) scale(0.72)">
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>百家姓</div>
+          <div class="main">
+            <!--          <earth style="width: 100%;height: 100%"></earth>-->
+            <word-cloud style="width: 100%;height: 90%"></word-cloud>
+            <div style="width: 90%;height: 10%"></div>
+          </div>
+        </section>
+        <section v-if="isShow.birth" class="item active"  style="transform:translate(21.5%,-12%) scale(0.72)">
 
-        <section v-if="isShow.earth" class="item active"  style="transform:translate(21.5%,-12%) scale(0.72)">
-          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>国外合办高校</div>
-        <div class="main">
-          <earth style="width: 100%;height: 100%"></earth>
 
+
+          <div class="subtitle" ><span class="iconfont icondianzan" style="font-size: 36px;margin-right: 10px"></span>生日及星座分布情况</div>
+        <div class="main" style="height: 90%">
+<!--          <earth style="width: 100%;height: 100%"></earth>-->
+          <chart6 style="width: 100%;height: 100%"></chart6>
         </div>
       </section>
         <section v-if="isShow.radar1" class="item active"  style="transform:translate(21.5%,-12%) scale(0.72)">
@@ -82,7 +100,6 @@
                 <v-chart :options="mybar2" autoresize style="width: 33%;height: 45%;float: left"></v-chart>
                 <v-chart :options="mybar3" autoresize style="width: 33%;height: 45%;float: left"></v-chart>
               </div>
-              <v-chart :options="proportionCenter"  autoresize style="width: 100%;height: 90%"></v-chart>
 
           </div>
         </section>
@@ -105,6 +122,9 @@
 
           </div>
         </section>
+
+
+
       </transition>
 
 
@@ -142,19 +162,22 @@ import chart2 from '@/components/chart2'
 import chart3 from '@/components/chart3'
 import chart4 from '@/components/chart4'
 import chart5 from '@/components/chart5'
+import chart6 from '@/components/vue10'
+import cloud from '@/components/cloud'
   import api from '@/api/api'
     export default {
         name: "test",
-      components:{"chart1":chart1,"chart2":chart2,"chart3":chart3,"earth":chart4,"chart5":chart5},
+      components:{"chart1":chart1,"chart2":chart2,"chart3":chart3,"earth":chart4,"chart5":chart5,'chart6':chart6,'wordCloud':cloud},
       data() {
         return {
           isShow:{
-            earth:true,
             radar1:false,
             radar2:false,
             pie:false,
             bar:false,
-            nation:false
+            nation:false,
+            name:false,
+            birth:true
           },
           proportionCenter :{
             color: [ 'rgba(8,217,197, 0.9)','rgba(59,153,216,0.9)', '#E099FF'],
@@ -1310,81 +1333,90 @@ import chart5 from '@/components/chart5'
         }
       },
       mounted() {
-
+//name nation age birth propor radar1 radar3
 
         this.initRadar2()
         this.initProportion()
         this.initNationOption()
 
-        let firstInterval = setInterval(()=>{
-          if(this.index === 1)
-          {
-            this.isShow.earth = false
-
-          }
-          else if(this.index === 2)
-          {
-            this.isShow.radar1 = false
-
-          }
-          else if(this.index === 3)
-          {
-            this.isShow.bar = false
-
-          }
-          else if(this.index === 4)
-          {
-            this.isShow.radar2 = false
-
-          }
-          else if(this.index === 5)
-          {
-            this.isShow.pie = false
-            clearInterval(firstInterval)
-          }
-
-
-
-
-        },12000)
-
-        let secondInterval = setInterval(()=> {
-
-          if(this.index === 1)
-          {
-
-            this.index ++
-            this.isShow.radar1 = true
-            this.initRadarCenter()
-          }
-          else if(this.index === 2)
-          {
-
-            this.index ++
-
-            this.isShow.bar = true
-            this.initAgeCenter()
-          }
-          else if(this.index === 3)
-          {
-            this.index ++
-            this.isShow.radar2 = true
-            this.initRadarCenter2()
-
-          }
-          else if(this.index === 4)
-          {
-            this.isShow.pie = true
-            this.initProportionCenter()
-            this.index ++
-          }
-          else if(this.index === 5)
-          {
-            this.isShow.nation = true
-            this.initNationCenter()
-            clearInterval(secondInterval)
-          }
-        },12200)
+        // let firstInterval = setInterval(()=>{
+        //   if(this.index === 1)
+        //   {
+        //     this.isShow.name = false
+        //
+        //   }
+        //   else if(this.index === 2)
+        //   {
+        //     this.isShow.nation = false
+        //
+        //   }
+        //   else if(this.index === 3)
+        //   {
+        //     this.isShow.bar = false
+        //
+        //   }
+        //   else if(this.index === 4)
+        //   {
+        //     this.isShow.birth = false
+        //
+        //   }
+        //   else if(this.index === 5)
+        //   {
+        //     this.isShow.pie = false
+        //
+        //   }
+        //   else if(this.index === 6)
+        //   {
+        //     this.isShow.radar1 = false
+        //     clearInterval(firstInterval)
+        //   }
+        //
+        //
+        // },12000)
+        //
+        // let secondInterval = setInterval(()=> {
+        //
+        //   if(this.index === 1)
+        //   {
+        //     this.index ++
+        //     this.isShow.nation = true
+        //     this.initNationCenter()
+        //
+        //   }
+        //   else if(this.index === 2)
+        //   {
+        //
+        //     this.index ++
+        //
+        //     this.isShow.bar = true
+        //     this.initAgeCenter()
+        //   }
+        //   else if(this.index === 3)
+        //   {
+        //     this.index ++
+        //     this.isShow.birth=true
+        //
+        //   }
+        //   else if(this.index === 4)
+        //   {
+        //     this.isShow.pie = true
+        //     this.initProportionCenter()
+        //     this.index ++
+        //   }
+        //   else if(this.index === 5)
+        //   {
+        //     this.index ++
+        //     this.isShow.radar1 = true
+        //     this.initRadarCenter()
+        //
+        //   }
+        //   else if(this.index === 6)
+        //   {
+        //     this.isShow.radar2 = true
+        //     this.initRadarCenter2()
+        //     clearInterval(secondInterval)
+        //   }
+        // },12200)
 
 
 
@@ -1404,7 +1436,6 @@ import chart5 from '@/components/chart5'
         },
         initProportion(){
           this.proportion = {
-            backgroundColor: "#03141c",
             title: {
               show:false,
               text: "8：17",
@@ -1436,7 +1467,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [90, 110],
+                radius: [110, 130],
                 center: ['30%', '50%'],
                 data: [{
                   value: 10382,
@@ -1453,7 +1484,7 @@ import chart5 from '@/components/chart5'
                   label: {
                     color: "rgba(255,255,255,.45)",
                     fontSize: 30,
-                    formatter: '{a|全校男女比}\n\n{a|8：17}',
+                    formatter: '{a|全校男女比}\n\n{a|32% : 68%}',
                     position: 'center',
                     rich: {
                       a: {
@@ -1479,7 +1510,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [90, 110],
+                radius: [110, 130],
                 center: ['30%', '50%'],
                 data: [{
                   value: 10382,
@@ -1519,7 +1550,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [90, 110],
+                radius: [110, 130],
                 center: ['70%', '50%'],
                 data: [{
                   value: 41,
@@ -1537,7 +1568,7 @@ import chart5 from '@/components/chart5'
                     color: "rgba(255,255,255,.45)",
                     position:'center',
                     fontSize: 30,
-                    formatter: '{a|获奖男女比\n\n9：41}',
+                    formatter: '{a|获奖男女比\n\n22% : 78%}',
                     rich: {
                       a: {
                         color: "#fff",
@@ -1559,7 +1590,7 @@ import chart5 from '@/components/chart5'
               {
                 name: '男女比',
                 type: 'pie',
-                radius: [90, 110],
+                radius: [110, 130],
                 center: ['70%', '50%'],
                 data: [{
                   value: 41,
@@ -1949,7 +1980,7 @@ import chart5 from '@/components/chart5'
                 "symbolRepeat": "fixed",
                 "symbolMargin": "1%",
                 "symbolClip": true,
-                "symbolSize": 25,
+                "symbolSize": 40,
                 "symbolPosition": "start",
                 "symbolOffset": [
                   20,
@@ -2006,7 +2037,7 @@ import chart5 from '@/components/chart5'
                 "symbolRepeat": "fixed",
                 "symbolMargin": "1%",
                 "symbolClip": true,
-                "symbolSize": 25,
+                "symbolSize": 40,
                 "symbolPosition": "start",
                 "symbolOffset": [
                   20,
@@ -2921,19 +2952,20 @@ import chart5 from '@/components/chart5'
   .container
   {
     width: 100%;
-    height:96vh;
-    font-family: ch;
+    height:90vh;
+
     font-color:white;
   }
   .title{
     width: 100%;
-    height: 9%;
+    height: 13%;
   }
   .subtitle{
     font-size: 45px;
     color:#fff;
     margin-left: 20px;
     margin-top: 10px;
+    font-family: ch;
   }
   section{
     z-index: 1;
@@ -2952,13 +2984,13 @@ import chart5 from '@/components/chart5'
   }
   .parent{
     position:relative;
-    height: calc(85% - 20px);
+    height: 84%;
     width: 100%;
   }
   .active{
     height: 145%;
     width: 70%;
-    font-size: 50px;
+    font-size: 48px;
   }
   .main{
     height: 100%;
